@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎨 CHDAY169 Scratch 教學平台</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    .hero {
+      background: linear-gradient(135deg, #4a6fa5 0%, #6b8cbc 100%);
+      color: white;
+      padding: 3rem 2rem;
+      border-radius: 15px;
+      margin: 2rem auto;
+      text-align: center;
+      max-width: 1000px;
+    }
+    
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    
+    .feature-card {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      border: 1px solid #e9ecef;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    
+    .feature-card h3 {
+      color: #4a6fa5;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .feature-icon {
+      font-size: 2rem;
+    }
+    
+    .source-badge {
+      display: inline-block;
+      padding: 3px 8px;
+      font-size: 0.7rem;
+      border-radius: 10px;
+      margin-left: 5px;
+      font-weight: 500;
+    }
+    
+    .badge-local {
+      background: #28a745;
+      color: white;
+    }
+    
+    .badge-github {
+      background: #6f42c1;
+      color: white;
+    }
+    
+    .badge-youtube {
+      background: #ff0000;
+      color: white;
+    }
+    
+    .badge-external {
+      background: #fd7e14;
+      color: white;
+    }
+    
+    .btn-container {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+    
+    .stat-item {
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #4a6fa5;
+    }
+    
+    .stat-label {
+      color: #6c757d;
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
+    
+    .new-feature {
+      position: relative;
+    }
+    
+    .new-badge {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: #ff6b6b;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    
+    @media (max-width: 768px) {
+      .hero {
+        padding: 2rem 1rem;
+      }
+      
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .stats {
+        gap: 2rem;
+      }
+      
+      .stat-number {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="page-header">
+      <h1>🎨 CHDAY169 Scratch 教學平台</h1>
+      <p class="subtitle">創意程式設計學習資源與教學教材</p>
+    </header>
+    
+    <div class="hero">
+      <h2>🚀 歡迎來到 Scratch 學習世界</h2>
+      <p>從基礎到進階的完整 Scratch 學習路徑，包含動畫設計、遊戲開發與創意程式教學</p>
+      <div style="margin-top: 20px;">
+        <span class="badge-local source-badge">本地上傳</span>
+        <span class="badge-github source-badge">GitHub Release</span>
+        <span class="badge-youtube source-badge">YouTube</span>
+        <span class="badge-external source-badge">外部資源</span>
+      </div>
+    </div>
+    
+    <nav class="breadcrumb">
+      <a href="index.html">首頁</a>
+    </nav>
+    
+    <main class="main-content">
+      <div class="stats">
+        <div class="stat-item">
+          <div class="stat-number" id="totalViews">0</div>
+          <div class="stat-label">總瀏覽次數</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" id="pdfCount">0</div>
+          <div class="stat-label">PDF教材數</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" id="videoCount">0</div>
+          <div class="stat-label">影片數量</div>
+        </div>
+      </div>
+      
+      <div class="feature-grid">
+        <div class="feature-card new-feature">
+          <span class="new-badge">NEW</span>
+          <h3><span class="feature-icon">📚</span> Scratch 教材瀏覽器</h3>
+          <p>完整的 Scratch 教學 PDF 教材，支援多種來源：</p>
+          <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+            <li>本地上傳 PDF 教材</li>
+            <li>GitHub Release 動態導入 <span class="badge-github source-badge">GitHub</span></li>
+            <li>外部連結教材 <span class="badge-external source-badge">外部</span></li>
+            <li>30+ 個教學章節</li>
+            <li>分級難度學習系統</li>
+            <li>學習進度追蹤</li>
+          </ul>
+          <a href="scratch-viewer.html" class="btn btn-primary">開始學習 →</a>
+        </div>
+        
+        <div class="feature-card new-feature">
+          <span class="new-badge">NEW</span>
+          <h3><span class="feature-icon">🎥</span> 統一影片播放器</h3>
+          <p>整合所有教學影片，使用統一清單管理：</p>
+          <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+            <li>我的 YouTube 頻道影片 <span class="badge-youtube source-badge">YT</span></li>
+            <li>預嵌方式播放</li>
+            <li>外部網站連結 <span class="badge-external source-badge">EXT</span></li>
+            <li>統一 <code>video_list.json</code> 管理</li>
+            <li>分類篩選功能</li>
+            <li>自動播放控制</li>
+          </ul>
+          <a href="video-player.html" class="btn btn-primary">觀看影片 →</a>
+        </div>
+        
+        <div class="feature-card">
+          <h3><span class="feature-icon">🔗</span> 學習資源與管理</h3>
+          <p>推薦的學習資源與平台管理工具：</p>
+          <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+            <li>Scratch 官方資源</li>
+            <li>進階學習路徑</li>
+            <li>程式設計工具推薦</li>
+            <li>教學平台連結</li>
+            <li>數據管理後台 <span class="new-badge" style="position:static; display:inline-block; margin-left:5px;">NEW</span></li>
+          </ul>
+          <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <a href="resources.html" class="btn btn-secondary">查看資源</a>
+            <a href="admin.html" class="btn btn-secondary" style="background: #6f42c1;">數據管理</a>
+          </div>
+        </div>
+      </div>
+      
+      <section class="learning-path">
+        <h2>🎯 學習路徑建議</h2>
+        <div style="background: #f8f9fa; padding: 2rem; border-radius: 12px; margin: 2rem 0;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+            <div>
+              <h4 style="color: #4a6fa5;">📘 初階入門</h4>
+              <ul style="margin-top: 10px;">
+                <li>Scratch 基礎概念</li>
+                <li>角色控制與移動</li>
+                <li>簡單動畫設計</li>
+                <li>事件處理入門</li>
+              </ul>
+            </div>
+            <div>
+              <h4 style="color: #4a6fa5;">🎮 中階應用</h4>
+              <ul style="margin-top: 10px;">
+                <li>遊戲邏輯設計</li>
+                <li>變數與資料處理</li>
+                <li>互動設計技巧</li>
+                <li>音效與多媒體</li>
+              </ul>
+            </div>
+            <div>
+              <h4 style="color: #4a6fa5;">⚡ 進階技巧</h4>
+              <ul style="margin-top: 10px;">
+                <li>數學運算應用</li>
+                <li>函式與模組化</li>
+                <li>專案規劃管理</li>
+                <li>演算法基礎</li>
+              </ul>
+            </div>
+            <div>
+              <h4 style="color: #4a6fa5;">🚀 專題實作</h4>
+              <ul style="margin-top: 10px;">
+                <li>電子鐘專案</li>
+                <li>計算器設計</li>
+                <li>動畫故事創作</li>
+                <li>遊戲專題開發</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section style="margin: 3rem 0;">
+        <h2>🔄 新功能特色</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+          <div style="text-align: center; padding: 15px; background: #e8f1ff; border-radius: 10px;">
+            <div style="font-size: 2rem;">📁</div>
+            <div style="font-weight: 600;">統一資料管理</div>
+            <div style="font-size: 0.9rem; color: #6c757d;">使用JSON清單管理所有資源</div>
+          </div>
+          <div style="text-align: center; padding: 15px; background: #e8f1ff; border-radius: 10px;">
+            <div style="font-size: 2rem;">🔄</div>
+            <div style="font-weight: 600;">動態載入</div>
+            <div style="font-size: 0.9rem; color: #6c757d;">PDF與影片皆可動態更新</div>
+          </div>
+          <div style="text-align: center; padding: 15px; background: #e8f1ff; border-radius: 10px;">
+            <div style="font-size: 2rem;">🎯</div>
+            <div style="font-weight: 600;">多來源支援</div>
+            <div style="font-size: 0.9rem; color: #6c757d;">本地、GitHub、外部資源</div>
+          </div>
+          <div style="text-align: center; padding: 15px; background: #e8f1ff; border-radius: 10px;">
+            <div style="font-size: 2rem;">📊</div>
+            <div style="font-weight: 600;">統計追蹤</div>
+            <div style="font-size: 0.9rem; color: #6c757d;">瀏覽次數與學習進度</div>
+          </div>
+        </div>
+      </section>
+    </main>
+    
+    <div class="btn-container">
+      <a href="scratch-viewer.html" class="btn btn-primary">🎨 開始學習 Scratch</a>
+      <a href="video-player.html" class="btn btn-primary">🎥 觀看教學影片</a>
+      <a href="admin.html" class="btn" style="background: #6f42c1; color: white;">🔧 數據管理</a>
+      <a href="about.html" class="btn btn-secondary">🙋 關於作者</a>
+      <a href="resources.html" class="btn btn-secondary">🔗 學習資源</a>
+    </div>
+    
+    <footer style="text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #dee2e6;">
+      <p>&copy; 2025 CHDAY169 Scratch 教學平台 | 版本 2.0</p>
+      <p>📧 聯絡信箱: <a href="mailto:chday169@gmail.com">chday169@gmail.com</a></p>
+      <div style="margin-top: 1rem;">
+        <a href="https://scratch.mit.edu" target="_blank" class="btn btn-sm">🌐 Scratch 官方</a>
+        <a href="https://github.com/chday169" target="_blank" class="btn btn-sm">💻 GitHub</a>
+        <a href="https://www.youtube.com/@chday7919" target="_blank" class="btn btn-sm" style="background: #ff0000; color: white;">📺 YouTube</a>
+      </div>
+      <div style="margin-top: 20px; font-size: 0.8rem; color: #6c757d;">
+        <p>📊 平台統計：<span id="statsInfo">載入中...</span></p>
+      </div>
+    </footer>
+  </div>
+  
+  <script>
+    // 統計功能
+    document.addEventListener('DOMContentLoaded', function() {
+      // 更新總瀏覽次數
+      updateTotalViews();
+      
+      // 載入教材和影片數量
+      loadResourceCounts();
+      
+      // 記錄首頁訪問
+      recordPageView('home');
+      
+      // 更新平台統計資訊
+      updatePlatformStats();
+    });
+    
+    function updateTotalViews() {
+      let total = 0;
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && key.startsWith('views_')) {
+          total += parseInt(localStorage.getItem(key) || 0);
+        }
+      }
+      document.getElementById('totalViews').textContent = total;
+    }
+    
+    function loadResourceCounts() {
+      // 嘗試從 localStorage 載入統計
+      const pdfCount = localStorage.getItem('pdf_total_count') || '0';
+      const videoCount = localStorage.getItem('video_total_count') || '0';
+      
+      document.getElementById('pdfCount').textContent = pdfCount;
+      document.getElementById('videoCount').textContent = videoCount;
+      
+      // 如果沒有統計數據，嘗試從清單檔案載入
+      if (pdfCount === '0') {
+        fetch('./data_scr/manifest.json')
+          .then(response => response.json())
+          .then(data => {
+            if (data.pdfs && Array.isArray(data.pdfs)) {
+              const count = data.pdfs.length;
+              document.getElementById('pdfCount').textContent = count;
+              localStorage.setItem('pdf_total_count', count.toString());
+            }
+          })
+          .catch(() => {
+            document.getElementById('pdfCount').textContent = '30+';
+          });
+      }
+      
+      if (videoCount === '0') {
+        fetch('./data_scr/video_list.json')
+          .then(response => response.json())
+          .then(data => {
+            if (data.videos && Array.isArray(data.videos)) {
+              const readyVideos = data.videos.filter(v => v.status === 'ready').length;
+              document.getElementById('videoCount').textContent = readyVideos;
+              localStorage.setItem('video_total_count', readyVideos.toString());
+            }
+          })
+          .catch(() => {
+            document.getElementById('videoCount').textContent = '10+';
+          });
+      }
+    }
+    
+    function recordPageView(page) {
+      const key = `views_${page}`;
+      let count = parseInt(localStorage.getItem(key) || '0');
+      count++;
+      localStorage.setItem(key, count.toString());
+      
+      // 同時更新總瀏覽次數顯示
+      updateTotalViews();
+    }
+    
+    function updatePlatformStats() {
+      // 計算各種統計數據
+      let totalPDFViews = 0;
+      let totalVideoViews = 0;
+      
+      // 計算PDF瀏覽次數
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && key.startsWith('pdf_views_')) {
+          totalPDFViews += parseInt(localStorage.getItem(key) || 0);
+        }
+      }
+      
+      // 計算影片瀏覽次數
+      totalVideoViews = parseInt(localStorage.getItem('total_video_views') || '0');
+      
+      const totalViews = parseInt(localStorage.getItem('views_home') || '0') +
+                        parseInt(localStorage.getItem('views_scratch_viewer') || '0') +
+                        parseInt(localStorage.getItem('views_video') || '0');
+      
+      // 更新統計資訊
+      const statsInfo = document.getElementById('statsInfo');
+      statsInfo.innerHTML = `
+        首頁: ${localStorage.getItem('views_home') || '0'}次 |
+        教材: ${totalPDFViews}次 |
+        影片: ${totalVideoViews}次 |
+        總計: ${totalViews}次
+      `;
+    }
+    
+    // 定期更新統計
+    setInterval(updatePlatformStats, 30000);
+  </script>
+</body>
+</html>

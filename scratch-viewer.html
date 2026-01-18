@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎨 Scratch 教材瀏覽器 | CHDAY169</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.9.179/pdf.min.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.9.179/pdf.worker.min.js';
+  </script>
+  <style>
+    /* 保持原有的CSS樣式，只新增以下樣式 */
+    .source-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      font-size: 0.8rem;
+      border-radius: 12px;
+      margin-left: 8px;
+      font-weight: 500;
+    }
+    
+    .source-local {
+      background: #28a745;
+      color: white;
+    }
+    
+    .source-github {
+      background: #6f42c1;
+      color: white;
+    }
+    
+    .source-external {
+      background: #fd7e14;
+      color: white;
+    }
+    
+    .source-selector {
+      margin: 15px 0;
+      padding: 10px;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+    
+    .github-info {
+      background: #e8f1ff;
+      padding: 10px;
+      border-radius: 8px;
+      margin: 10px 0;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body class="container">
+  <header class="page-header">
+    <h1>🎨 Scratch 教材瀏覽器</h1>
+    <p class="subtitle">Scratch 程式設計學習資源與教學教材</p>
+    <div class="source-selector">
+      <strong>📚 教材來源：</strong>
+      <button onclick="filterSource('all')" class="level-btn active">全部</button>
+      <button onclick="filterSource('local')" class="level-btn">本地上傳</button>
+      <button onclick="filterSource('github')" class="level-btn">GitHub Release</button>
+      <button onclick="filterSource('external')" class="level-btn">外部連結</button>
+    </div>
+  </header>
+  
+  <nav class="breadcrumb">
+    <a href="index.html">首頁</a> &gt; <span>Scratch 教材</span>
+  </nav>
+  
+  <main class="viewer-container">
+    <div class="viewer-content">
+      <aside class="sidebar">
+        <h3>📚 Scratch 教材選單</h3>
+        
+        <div class="level-filter">
+          <h4>🔍 難度等級</h4>
+          <div class="level-buttons" id="levelButtons">
+            <!-- 動態生成 -->
+          </div>
+        </div>
+        
+        <select id="pdfSelect" size="8" class="pdf-select"></select>
+        
+        <div class="nav-buttons">
+          <button onclick="prevPDF()" class="nav-btn">⬅️ 上一教材</button>
+          <button onclick="nextPDF()" class="nav-btn">➡️ 下一教材</button>
+          <button onclick="refreshList()" class="nav-btn">🔄 重新整理</button>
+          <button onclick="goBack()" class="nav-btn back-btn">🔙 返回主頁</button>
+        </div>
+        
+        <div id="fileInfo" class="github-info" style="display: none;">
+          <strong>📁 檔案資訊：</strong>
+          <div id="fileDetails"></div>
+        </div>
+      </aside>
+      
+      <section class="viewer-main">
+        <div class="pdf-canvas-container">
+          <canvas id="pdfCanvas"></canvas>
+        </div>
+        
+        <div class="status-info" id="statusText">
+          <span class="loading"></span>請選擇 Scratch 教材
+        </div>
+        
+        <div id="githubDetails" class="github-info" style="display: none;">
+          <strong>🐙 GitHub 來源：</strong>
+          <div id="githubRepoInfo"></div>
+        </div>
+        
+        <!-- 保持原有的控制按鈕和統計 -->
+        <div class="page-controls">
+          <button onclick="prevPage()" class="page-btn">📄 上一頁</button>
+          <span class="page-info" id="pageInfo">第 0 頁 / 共 0 頁</span>
+          <button onclick="nextPage()" class="page-btn">📄 下一頁</button>
+        </div>
+        
+        <!-- 其餘部分保持不變 -->
+      </section>
+    </div>
+  </main>
+  
+  <script>
+    const manifestURL = './data_scr/manifest.json';
+    
+    let pdfList = [];
+    let filteredList = [];
+    let currentIndex = -1;
+    let currentPage = 1;
+    let totalPages = 1;
+    let currentPDF = null;
+    let hasLikedCurrentPDF = false;
+    let currentScale = 1.5;
+    let currentFilter = {
+      level: 'all',
+      source: 'all'
+    };
+    
+    // 載入 PDF 清單
+    async function loadPDFList() {
+      try {
+        showStatus('載入 Scratch 教材清單中...');
+        
+        const response = await fetch(manifestURL);
+        if (!response.ok) throw new Error('無法載入清單');
+        
+        const data = await response.json();
+        if (!data.pdfs || !Array.isArray(data.pdfs)) {
+          throw new Error('清單格式錯誤');
+        }
+        
+        pdfList = data.pdfs.map(item => ({
+          ...item,
+          views: parseInt(localStorage.getItem(`pdf_views_${item.id}`) || '0'),
+          likes: parseInt(localStorage.getItem(`pdf_likes_${item.id}`) || '0')
+        }));
+        
+        // 載入分類
+        if (data.categories) {
+          window.pdfCategories = data.categories;
+        }
+        
+        // 初始化過濾按鈕
+        initLevelButtons();
+        
+        // 過濾清單
+        applyFilters();
+        
+        if (pdfList.length > 0) {
+          showStatus(`找到 ${pdfList.length} 個教材`);
+        } else {
+          showStatus('❌ 沒有可用的 Scratch 教材', 'error');
+        }
+      } catch (err) {
+        console.error('載入錯誤：', err);
+        showStatus('❌ 無法載入教材清單，使用備用資料', 'error');
+        loadFallbackData();
+      }
+    }
+    
+    function initLevelButtons() {
+      const container = document.getElementById('levelButtons');
+      container.innerHTML = '';
+      
+      // 添加"全部"按鈕
+      const allBtn = createLevelButton('all', '全部');
+      container.appendChild(allBtn);
+      
+      // 添加分類按鈕
+      if (window.pdfCategories) {
+        Object.entries(window.pdfCategories).forEach(([key, label]) => {
+          const btn = createLevelButton(key, label);
+          container.appendChild(btn);
+        });
+      }
+      
+      // 設置默認選中
+      document.querySelector('.level-btn[data-level="all"]').classList.add('active');
+    }
+    
+    function createLevelButton(level, label) {
+      const btn = document.createElement('button');
+      btn.className = 'level-btn';
+      btn.dataset.level = level;
+      btn.textContent = label;
+      btn.onclick = () => filterLevel(level);
+      return btn;
+    }
+    
+    function filterLevel(level) {
+      // 更新按鈕狀態
+      document.querySelectorAll('.level-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      document.querySelector(`.level-btn[data-level="${level}"]`).classList.add('active');
+      
+      currentFilter.level = level;
+      applyFilters();
+    }
+    
+    function filterSource(source) {
+      // 更新按鈕狀態
+      document.querySelectorAll('.source-selector .level-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+      
+      currentFilter.source = source;
+      applyFilters();
+    }
+    
+    function applyFilters() {
+      filteredList = pdfList.filter(item => {
+        // 等級過濾
+        if (currentFilter.level !== 'all' && item.level !== currentFilter.level) {
+          return false;
+        }
+        
+        // 來源過濾
+        if (currentFilter.source !== 'all' && item.source !== currentFilter.source) {
+          return false;
+        }
+        
+        return true;
+      });
+      
+      updatePDFSelect();
+      
+      if (filteredList.length > 0) {
+        showPDF(0);
+      } else {
+        showStatus(`❌ 沒有符合條件的教材`, 'error');
+        clearCanvas();
+      }
+    }
+    
+    function updatePDFSelect() {
+      const select = document.getElementById('pdfSelect');
+      select.innerHTML = '';
+      
+      filteredList.forEach((item, index) => {
+        const option = document.createElement('option');
+        option.value = index;
+        
+        // 構建顯示文字
+        let text = `${index + 1}. ${item.title}`;
+        if (item.level && window.pdfCategories) {
+          text += ` [${window.pdfCategories[item.level] || item.level}]`;
+        }
+        
+        // 添加來源標記
+        if (item.source) {
+          text += ` ${getSourceBadge(item.source)}`;
+        }
+        
+        option.innerHTML = text;
+        select.appendChild(option);
+      });
+      
+      // 如果有選中項目，顯示詳細資訊
+      if (currentIndex >= 0 && filteredList[currentIndex]) {
+        updateFileInfo(filteredList[currentIndex]);
+      }
+    }
+    
+    function getSourceBadge(source) {
+      const badges = {
+        local: '<span class="source-badge source-local">本地</span>',
+        github: '<span class="source-badge source-github">GitHub</span>',
+        external: '<span class="source-badge source-external">外部</span>'
+      };
+      return badges[source] || '';
+    }
+    
+    function updateFileInfo(item) {
+      const fileInfo = document.getElementById('fileInfo');
+      const fileDetails = document.getElementById('fileDetails');
+      const githubDetails = document.getElementById('githubDetails');
+      const githubRepoInfo = document.getElementById('githubRepoInfo');
+      
+      // 顯示基本資訊
+      fileDetails.innerHTML = `
+        <div>標題：${item.title}</div>
+        <div>等級：${window.pdfCategories?.[item.level] || item.level}</div>
+        <div>來源：${item.source}</div>
+        <div>瀏覽：${item.views || 0} 次</div>
+        <div>點讚：${item.likes || 0} 次</div>
+      `;
+      fileInfo.style.display = 'block';
+      
+      // 如果是 GitHub 來源，顯示詳細資訊
+      if (item.source === 'github' && item.github_repo) {
+        githubRepoInfo.innerHTML = `
+          <div>倉庫：${item.github_repo}</div>
+          <div>版本：${item.release_tag || '最新'}</div>
+          <div><a href="https://github.com/${item.github_repo}/releases" target="_blank">查看 Releases</a></div>
+        `;
+        githubDetails.style.display = 'block';
+      } else {
+        githubDetails.style.display = 'none';
+      }
+    }
+    
+    function showPDF(index) {
+      if (index < 0 || index >= filteredList.length) return;
+      
+      currentIndex = index;
+      const item = filteredList[index];
+      
+      showStatus(`載入教材：${item.title}`);
+      updateFileInfo(item);
+      
+      // 記錄瀏覽次數
+      recordView(item.id);
+      
+      // 載入 PDF
+      loadPDFDocument(item.url);
+    }
+    
+    async function loadPDFDocument(url) {
+      try {
+        // 如果是 GitHub URL，可能需要處理授權
+        if (url.includes('github.com')) {
+          // 可以考慮使用代理或直接連結
+          showStatus('正在從 GitHub 下載...');
+        }
+        
+        const loadingTask = pdfjsLib.getDocument({
+          url: url,
+          withCredentials: false
+        });
+        
+        currentPDF = await loadingTask.promise;
+        totalPages = currentPDF.numPages;
+        currentPage = 1;
+        
+        await renderPage(currentPage);
+        showStatus(`已載入：${filteredList[currentIndex].title}`);
+        
+      } catch (err) {
+        console.error('PDF 載入失敗：', err);
+        showStatus(`❌ 無法載入 PDF：${err.message}`, 'error');
+      }
+    }
+    
+    async function renderPage(pageNum) {
+      if (!currentPDF) return;
+      
+      const page = await currentPDF.getPage(pageNum);
+      const viewport = page.getViewport({ scale: currentScale });
+      const canvas = document.getElementById('pdfCanvas');
+      const context = canvas.getContext('2d');
+      
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+      
+      await page.render({
+        canvasContext: context,
+        viewport: viewport
+      }).promise;
+      
+      document.getElementById('pageInfo').textContent = `第 ${pageNum} 頁 / 共 ${totalPages} 頁`;
+      document.getElementById('zoomLevel').textContent = Math.round(currentScale * 100) + '%';
+    }
+    
+    function recordView(pdfId) {
+      const key = `pdf_views_${pdfId}`;
+      let count = parseInt(localStorage.getItem(key) || '0');
+      count++;
+      localStorage.setItem(key, count.toString());
+      
+      // 更新記憶體中的數據
+      const item = pdfList.find(p => p.id === pdfId);
+      if (item) {
+        item.views = count;
+      }
+      
+      // 更新顯示
+      if (currentIndex >= 0 && filteredList[currentIndex]?.id === pdfId) {
+        updateFileInfo(filteredList[currentIndex]);
+      }
+    }
+    
+    function recordLike(pdfId) {
+      const key = `pdf_likes_${pdfId}`;
+      let count = parseInt(localStorage.getItem(key) || '0');
+      count++;
+      localStorage.setItem(key, count.toString());
+      
+      // 更新記憶體中的數據
+      const item = pdfList.find(p => p.id === pdfId);
+      if (item) {
+        item.likes = count;
+      }
+      
+      // 更新顯示
+      if (currentIndex >= 0 && filteredList[currentIndex]?.id === pdfId) {
+        updateFileInfo(filteredList[currentIndex]);
+      }
+    }
+    
+    function showStatus(message, type = 'info') {
+      const statusEl = document.getElementById('statusText');
+      const icon = type === 'error' ? '❌' : type === 'loading' ? '<span class="loading"></span>' : '✅';
+      statusEl.innerHTML = `${icon} ${message}`;
+    }
+    
+    function loadFallbackData() {
+      pdfList = [
+        {
+          id: 'fallback1',
+          title: '測試教材 1',
+          level: 'beginner',
+          url: 'https://raw.githubusercontent.com/mozilla/pdf.js/gh-pages/web/compressed.tracemonkey-pldi-09.pdf',
+          source: 'external',
+          views: 0,
+          likes: 0
+        }
+      ];
+      applyFilters();
+    }
+    
+    function refreshList() {
+      loadPDFList();
+    }
+    
+    // 保持原有的導航函數
+    function prevPage() {
+      if (currentPDF && currentPage > 1) {
+        currentPage--;
+        renderPage(currentPage);
+      }
+    }
+    
+    function nextPage() {
+      if (currentPDF && currentPage < totalPages) {
+        currentPage++;
+        renderPage(currentPage);
+      }
+    }
+    
+    function prevPDF() {
+      if (currentIndex > 0) {
+        showPDF(currentIndex - 1);
+      }
+    }
+    
+    function nextPDF() {
+      if (currentIndex < filteredList.length - 1) {
+        showPDF(currentIndex + 1);
+      }
+    }
+    
+    function goBack() {
+      window.location.href = 'index.html';
+    }
+    
+    // 初始化
+    document.addEventListener('DOMContentLoaded', loadPDFList);
+    
+    document.getElementById('pdfSelect').addEventListener('change', function () {
+      const index = parseInt(this.value);
+      if (!isNaN(index)) showPDF(index);
+    });
+  </script>
+</body>
+</html>

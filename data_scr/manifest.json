@@ -1,0 +1,33 @@
+{
+  "pdfs": [
+    {
+      "id": "chapter0",
+      "title": "第0章：Scratch創意程式設計入門篇導讀",
+      "level": "beginner",
+      "url": "./data_scr/pdfs/pdf1.pdf",
+      "source": "local"
+    },
+    {
+      "id": "chapter1",
+      "title": "第1章：Scratch程式語言介紹",
+      "level": "beginner",
+      "url": "./data_scr/pdfs/pdf2.pdf",
+      "source": "local"
+    },
+    {
+      "id": "github1",
+      "title": "GitHub Release 範例教材",
+      "level": "intermediate",
+      "url": "https://github.com/username/repo/releases/download/v1.0/example.pdf",
+      "source": "github",
+      "github_repo": "username/repo",
+      "release_tag": "v1.0"
+    }
+  ],
+  "categories": {
+    "beginner": "初階入門",
+    "intermediate": "中階應用",
+    "advanced": "進階技巧",
+    "project": "專題實作"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "videos": [
+    {
+      "id": "scratch1",
+      "title": "Scratch動畫設計教學：他花歸去馬蹄香",
+      "description": "學習如何使用 Scratch 創作優美的動畫效果",
+      "url": "https://www.youtube.com/embed/aCZPHX13ZnE",
+      "source": "youtube",
+      "channel": "chday7919",
+      "category": "scratch",
+      "duration": "15:30",
+      "thumbnail": "https://img.youtube.com/vi/aCZPHX13ZnE/0.jpg",
+      "published": "2024-01-15",
+      "status": "ready"
+    },
+    {
+      "id": "scratch2",
+      "title": "Scratch電子鐘設計動畫教學",
+      "description": "實作 Scratch 電子鐘專案，學習時間處理與數字顯示",
+      "url": "https://www.youtube.com/embed/Aql3YLDG2a8",
+      "source": "youtube",
+      "channel": "chday7919",
+      "category": "scratch",
+      "duration": "12:45",
+      "thumbnail": "https://img.youtube.com/vi/Aql3YLDG2a8/0.jpg",
+      "published": "2024-02-20",
+      "status": "ready"
+    },
+    {
+      "id": "external1",
+      "title": "外部教學影片示例",
+      "description": "鏈接到外部網站的教學影片",
+      "url": "https://example.com/video",
+      "source": "external",
+      "category": "tutorial",
+      "embed_type": "iframe",
+      "status": "ready"
+    },
+    {
+      "id": "coming1",
+      "title": "更多 Scratch 教學影片",
+      "description": "我們正在準備更多精彩的 Scratch 教學內容",
+      "url": "",
+      "source": "youtube",
+      "category": "scratch",
+      "duration": "即將上線",
+      "status": "coming-soon"
+    }
+  ],
+  "categories": {
+    "scratch": "Scratch 教學",
+    "tutorial": "程式教學",
+    "demo": "作品展示"
+  },
+  "channels": {
+    "chday7919": "CHDAY169 清河",
+    "external": "外部資源"
+  }
+}
