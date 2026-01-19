@@ -15,14 +15,14 @@
       "source": "local"
     },
     {
-      "id": "github1",
-      "title": "GitHub Release 範例教材",
-      "level": "intermediate",
-      "url": "https://github.com/username/repo/releases/download/v1.0/example.pdf",
-      "source": "github",
-      "github_repo": "username/repo",
-      "release_tag": "v1.0"
-    }
+  "id": "scratch-github-01",
+  "title": "Scratch 基礎教學",
+  "level": "beginner",
+  "url": "https://github.com/chday169/scratch-web0218/releases/download/pdfs-scratch2026/您的PDF檔案名稱.pdf",
+  "source": "github",
+  "github_repo": "chday169/scratch-web0218",
+  "release_tag": "pdfs-scratch2026"
+  }
   ],
   "categories": {
     "beginner": "初階入門",

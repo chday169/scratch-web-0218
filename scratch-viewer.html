@@ -49,6 +49,16 @@
       margin: 10px 0;
       font-size: 0.9rem;
     }
+    
+    .download-link {
+      color: #0366d6;
+      text-decoration: none;
+      margin-right: 10px;
+    }
+    
+    .download-link:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body class="container">
@@ -123,6 +133,8 @@
   
   <script>
     const manifestURL = './data_scr/manifest.json';
+    const GITHUB_REPO = 'chday169/scratch-web0218';
+    const RELEASE_TAG = 'pdfs-scratch2026';
     
     let pdfList = [];
     let filteredList = [];
@@ -310,16 +322,26 @@
       fileInfo.style.display = 'block';
       
       // 如果是 GitHub 來源，顯示詳細資訊
-      if (item.source === 'github' && item.github_repo) {
+      if (item.source === 'github') {
+        const filename = getFilenameFromUrl(item.url);
         githubRepoInfo.innerHTML = `
-          <div>倉庫：${item.github_repo}</div>
-          <div>版本：${item.release_tag || '最新'}</div>
-          <div><a href="https://github.com/${item.github_repo}/releases" target="_blank">查看 Releases</a></div>
+          <div>倉庫：${GITHUB_REPO}</div>
+          <div>發布版本：${RELEASE_TAG}</div>
+          <div>檔案名稱：${filename}</div>
+          <div style="margin-top: 8px;">
+            <a href="https://github.com/${GITHUB_REPO}/releases/tag/${RELEASE_TAG}" target="_blank" class="download-link">📦 查看發布頁面</a>
+            <a href="${item.url}" target="_blank" class="download-link">⬇️ 直接下載</a>
+          </div>
         `;
         githubDetails.style.display = 'block';
       } else {
         githubDetails.style.display = 'none';
       }
+    }
+    
+    function getFilenameFromUrl(url) {
+      // 從 URL 中提取檔案名稱
+      return url.split('/').pop() || '未知檔案';
     }
     
     function showPDF(index) {
@@ -340,10 +362,9 @@
     
     async function loadPDFDocument(url) {
       try {
-        // 如果是 GitHub URL，可能需要處理授權
+        // 如果是 GitHub URL，顯示載入來源
         if (url.includes('github.com')) {
-          // 可以考慮使用代理或直接連結
-          showStatus('正在從 GitHub 下載...');
+          showStatus('正在從 GitHub Releases 載入...');
         }
         
         const loadingTask = pdfjsLib.getDocument({
@@ -381,7 +402,14 @@
       }).promise;
       
       document.getElementById('pageInfo').textContent = `第 ${pageNum} 頁 / 共 ${totalPages} 頁`;
-      document.getElementById('zoomLevel').textContent = Math.round(currentScale * 100) + '%';
+    }
+    
+    function clearCanvas() {
+      const canvas = document.getElementById('pdfCanvas');
+      const context = canvas.getContext('2d');
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      canvas.width = 0;
+      canvas.height = 0;
     }
     
     function recordView(pdfId) {
