@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🎨 CHDAY169 Scratch 教學平台</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <link rel="stylesheet" href="assets/style.css">
   <style>
     .hero {
@@ -127,10 +130,252 @@
       animation: pulse 2s infinite;
     }
     
+    /* 新增：導航按鈕容器樣式 */
+    .nav-buttons {
+      display: flex;
+      gap: 1rem;
+      margin: 1.5rem 0;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    /* 新增：下拉選單樣式 */
+    .dropdown {
+      display: inline-block;
+      position: relative;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: white;
+      min-width: 200px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      border-radius: 8px;
+      z-index: 1000;
+      padding: 10px;
+      top: 100%;
+      left: 0;
+      margin-top: 5px;
+    }
+    
+    .dropdown-content a {
+      display: block;
+      padding: 8px;
+      color: #333;
+      text-decoration: none;
+      border-bottom: 1px solid #eee;
+      transition: all 0.3s ease;
+    }
+    
+    .dropdown-content a:hover {
+      background: #f8f9fa;
+      color: #4a6fa5;
+      padding-left: 12px;
+    }
+    
+    .dropdown-content a:last-child {
+      border-bottom: none;
+    }
+    
+    .blog-platform {
+      font-size: 0.85rem;
+      color: #6c757d;
+      margin-left: 5px;
+    }
+    
+    /* 新增：作者介紹區塊樣式 */
+    .author-section {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-radius: 15px;
+      padding: 3rem 2rem;
+      margin: 4rem 0;
+      border-left: 5px solid #4a6fa5;
+    }
+    
+    .author-title {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    
+    .author-title h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin: 0;
+    }
+    
+    /* 新增：照片展示區域 */
+    .author-photo-section {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+      align-items: start;
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+    
+    .photo-container {
+      text-align: center;
+    }
+    
+    .profile-photo {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 1.5rem;
+      border: 5px solid #e8f1ff;
+      box-shadow: 0 8px 25px rgba(74, 111, 165, 0.2);
+      display: block;
+    }
+    
+    .photo-intro {
+      line-height: 1.7;
+    }
+    
+    .author-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+    
+    .author-bio {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      line-height: 1.8;
+    }
+    
+    .author-bio h3 {
+      color: #4a6fa5;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #e8f1ff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .author-bio p {
+      margin-bottom: 1.2rem;
+      color: #495057;
+      font-size: 1.05rem;
+    }
+    
+    .author-bio ul {
+      margin: 1.5rem 0;
+      padding-left: 1.5rem;
+      color: #495057;
+    }
+    
+    .author-bio li {
+      margin-bottom: 0.8rem;
+      position: relative;
+      padding-left: 10px;
+    }
+    
+    .author-bio li:before {
+      content: "•";
+      color: #4a6fa5;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+    
+    .book-highlight {
+      background: #e8f1ff;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-left: 4px solid #4a6fa5;
+    }
+    
+    .book-highlight h4 {
+      color: #2c3e50;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+    
+    .lang-indicator {
+      display: inline-block;
+      padding: 3px 10px;
+      background: #4a6fa5;
+      color: white;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    
+    /* 新增：著作預覽樣式 */
+    .preview-section {
+      margin-top: 2rem;
+      border-top: 1px solid #eee;
+      padding-top: 1.5rem;
+    }
+    
+    .preview-image {
+      width: 100%;
+      height: 150px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1px solid #dee2e6;
+      margin-top: 0.5rem;
+    }
+    
+    /* 新增：教學理念卡片 */
+    .teaching-philosophy {
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+    }
+    
+    /* 新增：數據統計卡片 */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    
+    .stat-card {
+      text-align: center;
+      padding: 1rem;
+      background: #e8f1ff;
+      border-radius: 8px;
+    }
+    
+    .stat-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+    
     @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.1); }
       100% { transform: scale(1); }
+    }
+    
+    @media (max-width: 992px) {
+      .author-photo-section {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      .photo-container {
+        margin-bottom: 2rem;
+      }
     }
     
     @media (max-width: 768px) {
@@ -149,6 +394,61 @@
       .stat-number {
         font-size: 2rem;
       }
+      
+      .nav-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .dropdown-content {
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        border: 1px solid #dee2e6;
+        margin-top: 10px;
+      }
+      
+      .author-section {
+        padding: 2rem 1rem;
+        margin: 3rem 0;
+      }
+      
+      .author-title h2 {
+        font-size: 1.8rem;
+      }
+      
+      .author-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .author-bio {
+        padding: 1.5rem;
+      }
+      
+      .profile-photo {
+        width: 200px;
+        height: 200px;
+      }
+      
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .author-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .profile-photo {
+        width: 180px;
+        height: 180px;
+      }
     }
   </style>
 </head>
@@ -157,6 +457,34 @@
     <header class="page-header">
       <h1>🎨 CHDAY169 Scratch 教學平台</h1>
       <p class="subtitle">創意程式設計學習資源與教學教材</p>
+      
+      <!-- 新增：導航按鈕區域 -->
+      <div class="nav-buttons">
+        <a href="scratch-viewer.html" class="btn btn-primary">📚 Scratch 教材瀏覽器</a>
+        <a href="video-player.html?v=3.0" class="btn btn-primary">🎥 統一影片播放器</a>
+        <a href="resources.html" class="btn btn-secondary">🔗 學習資源</a>
+        
+        <!-- 新增：部落格下拉選單 -->
+        <div class="dropdown">
+          <button class="btn" style="background: #17a2b8; color: white;">✍️ 我的部落格</button>
+          <div class="dropdown-content">
+            <a href="https://chday168plus1.blogspot.com" target="_blank">
+              <span style="color: #FF5722;">🅱️</span> Blogger 部落格
+              <span class="blog-platform">Google 平台</span>
+            </a>
+            <a href="https://chday169.wordpress.com" target="_blank">
+              <span style="color: #21759B;">🅿️</span> WordPress 部落格
+              <span class="blog-platform">專業版面</span>
+            </a>
+            <a href="https://chday169.pixnet.net/blog" target="_blank">
+              <span style="color: #00B894;">🅿️</span> Pixnet 痞客邦
+              <span class="blog-platform">台灣平台</span>
+            </a>
+          </div>
+        </div>
+        
+        <a href="admin.html" class="btn" style="background: #6f42c1; color: white;">🔧 數據管理</a>
+      </div>
     </header>
     
     <div class="hero">
@@ -167,6 +495,7 @@
         <span class="badge-github source-badge">GitHub Release</span>
         <span class="badge-youtube source-badge">YouTube</span>
         <span class="badge-external source-badge">外部資源</span>
+        <span class="badge-external source-badge" style="background: #17a2b8;">部落格</span>
       </div>
     </div>
     
@@ -218,7 +547,7 @@
             <li>分類篩選功能</li>
             <li>自動播放控制</li>
           </ul>
-          <a href="video-player.html" class="btn btn-primary">觀看影片 →</a>
+          <a href="video-player.html?v=3.0" class="btn btn-primary">觀看影片 →</a>
         </div>
         
         <div class="feature-card">
@@ -230,13 +559,155 @@
             <li>程式設計工具推薦</li>
             <li>教學平台連結</li>
             <li>數據管理後台 <span class="new-badge" style="position:static; display:inline-block; margin-left:5px;">NEW</span></li>
+            <li>我的部落格平台 <span class="badge-external source-badge" style="background: #17a2b8;">部落格</span></li>
           </ul>
           <div style="display: flex; gap: 10px; margin-top: 20px;">
             <a href="resources.html" class="btn btn-secondary">查看資源</a>
             <a href="admin.html" class="btn btn-secondary" style="background: #6f42c1;">數據管理</a>
+            <!-- 新增：AI生活平台按鈕 -->
+            <a href="https://chday169.github.io/ai-life-platfom-new/" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="btn" 
+               style="background: #6366f1; color: white; font-weight: bold;">
+              🤖 AI生活平台
+            </a>
           </div>
         </div>
       </div>
+      
+      <!-- 新增：作者介紹區塊 -->
+      <section class="author-section">
+        <div class="author-title">
+          <h2>👨‍🏫 關於創作者</h2>
+        </div>
+        
+        <!-- 新增：照片展示區域 -->
+        <div class="author-photo-section">
+          <!-- 左側：個人照片區 -->
+          <div class="photo-container">
+            <img 
+              src="assets/images/chday169.jpg" 
+              alt="CHDAY169 創作者照片"
+              class="profile-photo"
+              onerror="this.src='https://via.placeholder.com/250x250/4a6fa5/ffffff?text=CHDAY169';"
+            >
+            
+            <h3 style="color: #2c3e50; margin-bottom: 0.5rem;">CHDAY169</h3>
+            <p style="color: #6c757d; margin-bottom: 1.5rem;">Scratch/Turbowarp 教學平台創辦人</p>
+            
+            <!-- 著作預覽 -->
+            <div class="preview-section">
+              <h4 style="color: #4a6fa5; margin-bottom: 1rem; font-size: 1.1rem;">📖 著作預覽</h4>
+              <img 
+                src="assets/images/preview_line.jpg" 
+                alt="著作內容預覽"
+                class="preview-image"
+                onerror="this.style.display='none';"
+              >
+              <p style="font-size: 0.9rem; color: #6c757d; margin-top: 0.5rem;">
+                專業著作內容示例
+              </p>
+            </div>
+          </div>
+          
+          <!-- 右側：簡介文字 -->
+          <div class="photo-intro">
+            <div class="teaching-philosophy">
+              <h3 style="color: #4a6fa5; margin-bottom: 1rem;">🎯 教學理念</h3>
+              <p style="line-height: 1.7; color: #495057;">
+                <strong>「將複雜的程式概念轉化為簡單有趣的學習體驗」</strong>
+              </p>
+              <p style="line-height: 1.7; color: #495057; margin-top: 1rem;">
+                擁有多年程式設計教學經驗，專注於創造易學易懂的教材。從Fortran到Python，從理論到實作，致力於幫助各年齡層學習者建立扎實的程式基礎。
+              </p>
+            </div>
+            
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-icon">📚</div>
+                <div style="font-weight: 600; color: #2c3e50;">3本</div>
+                <div style="font-size: 0.9rem; color: #6c757d;">專業著作</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">💻</div>
+                <div style="font-weight: 600; color: #2c3e50;">5+種</div>
+                <div style="font-size: 0.9rem; color: #6c757d;">程式語言</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">🎥</div>
+                <div style="font-weight: 600; color: #2c3e50;">10+年</div>
+                <div style="font-size: 0.9rem; color: #6c757d;">教學經驗</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">🚀</div>
+                <div style="font-weight: 600; color: #2c3e50;">持續</div>
+                <div style="font-size: 0.9rem; color: #6c757d;">更新教材</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="author-content">
+          <div class="author-bio">
+            <h3><span class="lang-indicator">中文</span> 📝 創作者簡介</h3>
+            <p><strong>您好，我是Scratch(Turbowarp) 教材平台的創作者。</strong> 我熱愛程式設計與教學，專注於創建易學易懂的程式設計教材。</p>
+            
+            <p>我早年自學多種程式語言（Fortran, Excel, Vb6, Vba, Python），從基礎語法到專案開發，累積了豐富的實作經驗。現在致力於將複雜的程式概念轉化為簡單有趣的教學內容。</p>
+            
+            <div class="book-highlight">
+              <h4>📚 著作出版</h4>
+              <p>我於2008年曾出版過以下三本專業書籍：</p>
+              <ul>
+                <li><strong>《構造地質學》</strong></li>
+                <li><strong>《Excel在邊坡工程之應用》</strong></li>
+                <li><strong>《岩坡工程學》</strong></li>
+              </ul>
+              <p>書中例題多以程式驗證，目前構造地質學中多數例題已改用Python及Scratch(Turbowarp)改寫。</p>
+            </div>
+            
+            <p><strong>新版內容新增主題：</strong></p>
+            <ul>
+              <li>特徵值及特徵向量</li>
+              <li>張量分析</li>
+              <li>應力及應變</li>
+              <li>斷層與應力、斷層與地震</li>
+              <li>滑移織物變形圖</li>
+              <li>邊坡破壞力學機制</li>
+              <li>apsg（A Python package for structural geologist）應用介紹</li>
+            </ul>
+          </div>
+          
+          <div class="author-bio">
+            <h3><span class="lang-indicator">EN</span> 📝 About the Creator</h3>
+            <p><strong>Hello, I am the creator of the Scratch (Turbowarp) Learning Platform.</strong> I am passionate about programming and teaching, with a focus on creating clear, engaging, and easy-to-understand learning materials that make programming accessible to everyone.</p>
+            
+            <p>During my self-learning journey, I studied multiple programming languages, including Fortran, Excel, VB6, VBA, and Python. From basic syntax to project development, I gained extensive hands-on experience. Today, I dedicate myself to transforming complex programming concepts into simple and enjoyable lessons, helping learners build both logical thinking and creativity.</p>
+            
+            <div class="book-highlight">
+              <h4>📚 Published Works</h4>
+              <p>In 2008, I published three professional books:</p>
+              <ul>
+                <li><strong>Structural Geology</strong></li>
+                <li><strong>Applications of Excel in Slope Engineering</strong></li>
+                <li><strong>Rock Slope Engineering</strong></li>
+              </ul>
+              <p>These books featured examples verified through programming. Recently, I have rewritten most of the examples in Structural Geology using Python and Scratch (Turbowarp).</p>
+            </div>
+            
+            <p><strong>New edition includes advanced topics such as:</strong></p>
+            <ul>
+              <li>Eigenvalues and Eigenvectors</li>
+              <li>Tensor Analysis</li>
+              <li>Stress and Strain</li>
+              <li>Faults and Stress, Faults and Earthquakes</li>
+              <li>Slip Fabric Deformation Diagrams</li>
+              <li>Mechanisms of Slope Failure</li>
+              <li>Applications of apsg (A Python package for structural geologists)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
       
       <section class="learning-path">
         <h2>🎯 學習路徑建議</h2>
@@ -311,19 +782,37 @@
     
     <div class="btn-container">
       <a href="scratch-viewer.html" class="btn btn-primary">🎨 開始學習 Scratch</a>
-      <a href="video-player.html" class="btn btn-primary">🎥 觀看教學影片</a>
+      <a href="video-player.html?v=3.0" class="btn btn-primary">🎥 觀看教學影片</a>
       <a href="admin.html" class="btn" style="background: #6f42c1; color: white;">🔧 數據管理</a>
-      <a href="about.html" class="btn btn-secondary">🙋 關於作者</a>
       <a href="resources.html" class="btn btn-secondary">🔗 學習資源</a>
+      <!-- 新增：AI生活平台按鈕 -->
+      <a href="https://chday169.github.io/ai-life-platfom-new/" 
+         target="_blank" 
+         rel="noopener noreferrer"
+         class="btn" 
+         style="background: #6366f1; color: white; font-weight: bold;">
+        🤖 AI生活平台
+      </a>
     </div>
     
     <footer style="text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #dee2e6;">
-      <p>&copy; 2025 CHDAY169 Scratch 教學平台 | 版本 2.0</p>
+      <p>&copy; 2025 CHDAY169 Scratch 教學平台 | 版本 3.0</p>
       <p>📧 聯絡信箱: <a href="mailto:chday169@gmail.com">chday169@gmail.com</a></p>
       <div style="margin-top: 1rem;">
         <a href="https://scratch.mit.edu" target="_blank" class="btn btn-sm">🌐 Scratch 官方</a>
         <a href="https://github.com/chday169" target="_blank" class="btn btn-sm">💻 GitHub</a>
-        <a href="https://www.youtube.com/@chday7919" target="_blank" class="btn btn-sm" style="background: #ff0000; color: white;">📺 YouTube</a>
+        <a href="https://www.youtube.com/@chday19797" target="_blank" class="btn btn-sm" style="background: #ff0000; color: white;">📺 YouTube</a>
+        <a href="https://chday168plus1.blogspot.com" target="_blank" class="btn btn-sm" style="background: #FF5722; color: white;">🅱️ Blogger</a>
+        <a href="https://chday169.wordpress.com" target="_blank" class="btn btn-sm" style="background: #21759B; color: white;">🅿️ WordPress</a>
+        <a href="https://chday169.pixnet.net/blog" target="_blank" class="btn btn-sm" style="background: #00B894; color: white;">🅿️ Pixnet</a>
+        <!-- 新增：AI生活平台連結 -->
+        <a href="https://chday169.github.io/ai-life-platfom-new/" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="btn btn-sm" 
+           style="background: #6366f1; color: white; font-weight: bold;">
+          🤖 AI生活平台
+        </a>
       </div>
       <div style="margin-top: 20px; font-size: 0.8rem; color: #6c757d;">
         <p>📊 平台統計：<span id="statsInfo">載入中...</span></p>
@@ -345,6 +834,9 @@
       
       // 更新平台統計資訊
       updatePlatformStats();
+      
+      // 新增：部落格下拉選單功能
+      setupBlogDropdown();
     });
     
     function updateTotalViews() {
@@ -436,6 +928,40 @@
         影片: ${totalVideoViews}次 |
         總計: ${totalViews}次
       `;
+    }
+    
+    // 新增：部落格下拉選單功能
+    function setupBlogDropdown() {
+      const dropdownBtn = document.querySelector('.dropdown button');
+      const dropdownContent = document.querySelector('.dropdown-content');
+      
+      if (dropdownBtn && dropdownContent) {
+        // 點擊按鈕切換顯示/隱藏下拉選單
+        dropdownBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+        });
+        
+        // 點擊其他地方關閉下拉選單
+        document.addEventListener('click', function() {
+          dropdownContent.style.display = 'none';
+        });
+        
+        // 防止點擊下拉選單內部時關閉
+        dropdownContent.addEventListener('click', function(e) {
+          e.stopPropagation();
+        });
+        
+        // 在手機上，點擊連結後關閉下拉選單
+        const dropdownLinks = dropdownContent.querySelectorAll('a');
+        dropdownLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+              dropdownContent.style.display = 'none';
+            }
+          });
+        });
+      }
     }
     
     // 定期更新統計
