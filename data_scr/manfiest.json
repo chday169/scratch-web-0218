@@ -15,316 +15,267 @@
       "source": "local"
     },
     {
-      "id": "chapter00",
-      "title": "Scratch從零開始的創意程式設計之旅",
-      "level": "beginner",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter00.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter01",
-      "title": "Scratch 3程式語言介紹",
-      "level": "beginner",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter01.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter02",
-      "title": "Scratch及TurboWarp下載、安裝",
-      "level": "beginner",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter02.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter03",
-      "title": "Scratch主要積木構件介紹",
-      "level": "beginner",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter03.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter04",
-      "title": "建立Scratch（或TurboWarp）專案",
-      "level": "beginner",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter04.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter05",
-      "title": "造型及背景修圖工具",
-      "level": "intermediate",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter05.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter06",
-      "title": "顏色及顏色填充",
-      "level": "intermediate",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter06.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter07",
-      "title": "圖像組合",
-      "level": "intermediate",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter07.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter08",
-      "title": "舞台選取及角色選擇",
-      "level": "beginner",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter08.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter09",
-      "title": "Scratch創作旋律和舞蹈聯動",
-      "level": "project",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter09.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter10",
-      "title": "Scratch跑馬模擬",
-      "level": "project",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter10.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter11",
-      "title": "鵝的世界",
-      "level": "project",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter11.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter12",
-      "title": "Scratch製作如何使用AI Copilot簡報",
-      "level": "advanced",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter12.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter13",
-      "title": "詩詞賞析_古典意境與Scratch創作",
-      "level": "advanced",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter13.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter14",
-      "title": "電子鐘設計",
-      "level": "project",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter14.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter15",
-      "title": "Scratch繪圖與繪圖功能",
-      "level": "intermediate",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter15.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter16",
-      "title": "Scratch繪製圓形與橢圓",
-      "level": "intermediate",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter16.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter17",
-      "title": "Scratch自訂數學函數與空間運算模組",
-      "level": "advanced",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter17.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter18",
-      "title": "三維特徵值與特徵向量模組",
-      "level": "advanced",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter18.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter19",
-      "title": "主成分分析（PCA）與Scratch編程模組",
-      "level": "advanced",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter19.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter20",
-      "title": "精靈移動作幾何運算模組",
-      "level": "advanced",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter20.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter21",
-      "title": "Scratch笑臉繪製及矩陣轉換模組",
-      "level": "advanced",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter21.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter22",
-      "title": "Scratch文字處理模組",
-      "level": "intermediate",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter22.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter23",
-      "title": "Scratch × Micro:bit控制模組",
-      "level": "advanced",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter23.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter24",
-      "title": "圓周率、積分及微分簡介",
-      "level": "advanced",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter24.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter25",
-      "title": "Scratch二維函數圖形繪製模組",
-      "level": "advanced",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter25.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter26",
-      "title": "三維函數圖繪製程式設計模組化整合版",
-      "level": "advanced",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter26.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter27",
-      "title": "從Scratch到Python_JavaScript × Extension設計整合版",
-      "level": "advanced",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter27.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter28",
-      "title": "多功能科學計算器習作模組總整合",
-      "level": "advanced",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter28.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter29",
-      "title": "開啟Scratch「幾何建構思維」的關鍵工具",
-      "level": "advanced",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter29.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter30",
-      "title": "face-sensing(ai_python-java)",
-      "level": "advanced",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter30.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter31",
-      "title": "相片處理(ai-python-turbowarp)",
-      "level": "advanced",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter31.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "chapter32",
-      "title": "位元圖(ai-python-turbowarp)",
-      "level": "advanced",
-      "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter32.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web-0218",
-      "release_tag": "pdfs-scratch-new"
-    },
-    {
-      "id": "scratch-github-01",
-      "title": "Scratch基礎教學",
-      "level": "beginner",
-      "url": "https://github.com/chday169/scratch-web0218/releases/download/pdfs-scratch2026/您的PDF檔案名稱.pdf",
-      "source": "github",
-      "github_repo": "chday169/scratch-web0218",
-      "release_tag": "pdfs-scratch2026"
-    }
-  ],
-  "categories": {
-    "beginner": "初階入門",
-    "intermediate": "中階應用",
-    "advanced": "進階技巧",
-    "project": "專題實作"
+    "title": "第 00 章 - 前言與介紹",
+    "filename": "chapter00.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter00.pdf",
+    "description": "本書的前言與整體介紹，說明學習目標與各章概要。",
+    "category": "introduction",
+    "embedded": false
+  },
+  {
+    "title": "第 01 章 - Scratch 基礎環境設定",
+    "filename": "chapter01.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter01.pdf",
+    "description": "Scratch 開發環境安裝與基礎設定教學。",
+    "category": "basic",
+    "embedded": false
+  },
+  {
+    "title": "第 02 章 - 角色與舞台控制",
+    "filename": "chapter02.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter02.pdf",
+    "description": "學習角色新增、編輯與舞台背景設定。",
+    "category": "basic",
+    "embedded": false
+  },
+  {
+    "title": "第 03 章 - 運動與動畫程式積木",
+    "filename": "chapter03.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter03.pdf",
+    "description": "移動、旋轉、滑行等運動積木的應用教學。",
+    "category": "animation",
+    "embedded": false
+  },
+  {
+    "title": "第 04 章 - 外觀與對話控制",
+    "filename": "chapter04.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter04.pdf",
+    "description": "角色外觀變化、對話泡泡與特效應用。",
+    "category": "animation",
+    "embedded": false
+  },
+  {
+    "title": "第 05 章 - 聲音與音樂程式設計",
+    "filename": "chapter05.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter05.pdf",
+    "description": "播放聲音、錄製音效與簡單音樂創作。",
+    "category": "multimedia",
+    "embedded": false
+  },
+  {
+    "title": "第 06 章 - 事件與觸發控制",
+    "filename": "chapter06.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter06.pdf",
+    "description": "當綠旗被點擊、按鍵按下等事件觸發教學。",
+    "category": "control",
+    "embedded": false
+  },
+  {
+    "title": "第 07 章 - 控制結構：重複與迴圈",
+    "filename": "chapter07.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter07.pdf",
+    "description": "重複執行、計次迴圈與無限迴圈的應用。",
+    "category": "control",
+    "embedded": false
+  },
+  {
+    "title": "第 08 章 - 條件判斷與偵測",
+    "filename": "chapter08.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter08.pdf",
+    "description": "如果那麼、否則、碰偵測等條件判斷教學。",
+    "category": "control",
+    "embedded": false
+  },
+  {
+    "title": "第 09 章 - 變數與資料運算",
+    "filename": "chapter09.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter09.pdf",
+    "description": "變數建立、數學運算與資料處理基礎。",
+    "category": "data",
+    "embedded": false
+  },
+  {
+    "title": "第 10 章 - 清單資料結構應用",
+    "filename": "chapter10.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter10.pdf",
+    "description": "清單建立、新增刪除項目與資料管理。",
+    "category": "data",
+    "embedded": false
+  },
+  {
+    "title": "第 11 章 - 函式與自訂積木",
+    "filename": "chapter11.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter11.pdf",
+    "description": "建立自訂積木、參數使用與模組化程式設計。",
+    "category": "advanced",
+    "embedded": false
+  },
+  {
+    "title": "第 12 章 - 克隆與角色複製",
+    "filename": "chapter12.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter12.pdf",
+    "description": "克隆體建立、控制與應用場景教學。",
+    "category": "advanced",
+    "embedded": false
+  },
+  {
+    "title": "第 13 章 - 遊戲設計基礎：射擊遊戲",
+    "filename": "chapter13.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter13.pdf",
+    "description": "基礎射擊遊戲的完整設計與實作。",
+    "category": "game",
+    "embedded": false
+  },
+  {
+    "title": "第 14 章 - 遊戲設計：平台跳躍遊戲",
+    "filename": "chapter14.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter14.pdf",
+    "description": "重力、跳躍與平台碰撞的遊戲設計。",
+    "category": "game",
+    "embedded": false
+  },
+  {
+    "title": "第 15 章 - 遊戲設計：迷宮與解謎",
+    "filename": "chapter15.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter15.pdf",
+    "description": "迷宮生成、角色控制與解謎邏輯設計。",
+    "category": "game",
+    "embedded": false
+  },
+  {
+    "title": "第 16 章 - 動畫故事創作",
+    "filename": "chapter16.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter16.pdf",
+    "description": "多角色對話、場景轉換的故事動畫製作。",
+    "category": "animation",
+    "embedded": false
+  },
+  {
+    "title": "第 17 章 - 數學應用：幾何繪圖",
+    "filename": "chapter17.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter17.pdf",
+    "description": "使用Scratch繪製幾何圖形與數學視覺化。",
+    "category": "math",
+    "embedded": false
+  },
+  {
+    "title": "第 18 章 - 數學應用：簡單計算機",
+    "filename": "chapter18.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter18.pdf",
+    "description": "四則運算計算機的設計與實作。",
+    "category": "math",
+    "embedded": false
+  },
+  {
+    "title": "第 19 章 - 感測器與互動藝術",
+    "filename": "chapter19.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter19.pdf",
+    "description": "結合攝影機、聲音感測的互動藝術創作。",
+    "category": "advanced",
+    "embedded": false
+  },
+  {
+    "title": "第 20 章 - 雲端資料與多人互動",
+    "filename": "chapter20.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter20.pdf",
+    "description": "Scratch雲端變數與簡單多人互動專案。",
+    "category": "advanced",
+    "embedded": false
+  },
+  {
+    "title": "第 21 章 - 除錯技巧與效能優化",
+    "filename": "chapter21.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter21.pdf",
+    "description": "程式常見錯誤排除與專案效能提升技巧。",
+    "category": "advanced",
+    "embedded": false
+  },
+  {
+    "title": "第 22 章 - TurboWarp 進階功能",
+    "filename": "chapter22.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter22.pdf",
+    "description": "TurboWarp 加速、自訂擴展與進階設定。",
+    "category": "advanced",
+    "embedded": false
+  },
+  {
+    "title": "第 23 章 - 專題實作：電子時鐘",
+    "filename": "chapter23.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter23.pdf",
+    "description": "結合時間、外观变化的电子时钟專案。",
+    "category": "project",
+    "embedded": false
+  },
+  {
+    "title": "第 24 章 - 專題實作：繪圖板",
+    "filename": "chapter24.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter24.pdf",
+    "description": "可選擇顏色、粗細的簡易繪圖板製作。",
+    "category": "project",
+    "embedded": false
+  },
+  {
+    "title": "第 25 章 - 專題實作：音樂鍵盤",
+    "filename": "chapter25.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter25.pdf",
+    "description": "按鍵觸發不同音階的虛擬音樂鍵盤。",
+    "category": "project",
+    "embedded": false
+  },
+  {
+    "title": "第 26 章 - 專題實作：問答測驗遊戲",
+    "filename": "chapter26.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter26.pdf",
+    "description": "題庫隨機出題、計分的問答遊戲設計。",
+    "category": "project",
+    "embedded": false
+  },
+  {
+    "title": "第 27 章 - 專題實作：物理模擬（彈球）",
+    "filename": "chapter27.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter27.pdf",
+    "description": "模擬反彈、重力效果的彈球物理系統。",
+    "category": "project",
+    "embedded": false
+  },
+  {
+    "title": "第 28 章 - 專題實作：RPG 角色對話系統",
+    "filename": "chapter28.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter28.pdf",
+    "description": "角色對話樹、劇情分支的RPG系統設計。",
+    "category": "project",
+    "embedded": false
+  },
+  {
+    "title": "第 29 章 - 專題規劃與版本控制",
+    "filename": "chapter29.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter29.pdf",
+    "description": "大型專案規劃、備份與版本管理概念。",
+    "category": "project",
+    "embedded": false
+  },
+  {
+    "title": "第 30 章 - 分享與社群互動",
+    "filename": "chapter30.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter30.pdf",
+    "description": "將作品分享至Scratch社群與獲得反饋。",
+    "category": "community",
+    "embedded": false
+  },
+  {
+    "title": "第 31 章 - 從 Scratch 到 Python",
+    "filename": "chapter31.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter31.pdf",
+    "description": "銜接文字型程式語言的概念與路徑。",
+    "category": "advanced",
+    "embedded": false
+  },
+  {
+    "title": "第 32 章 - 創客專題：硬體整合入門",
+    "filename": "chapter32.pdf",
+    "url": "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter32.pdf",
+    "description": "結合微控制器（如Micro:bit）的基礎實作。",
+    "category": "advanced",
+    "embedded": false
   }
-}
+]
