@@ -1,0 +1,315 @@
+{
+  "pdfs": [
+    {
+      "id": "chapter0",
+      "title": "第0章：Scratch創意程式設計入門篇導讀",
+      "level": "beginner",
+      "url": "./data_scr/pdfs/pdf1.pdf",
+      "source": "local"
+    },
+    {
+      "id": "chapter1",
+      "title": "第1章：Scratch程式語言介紹",
+      "level": "beginner",
+      "url": "./data_scr/pdfs/pdf2.pdf",
+      "source": "local"
+    },
+    {
+      "id": "chapter00",
+      "title": "第0章：Scratch創意程式設計入門篇導讀",
+      "level": "beginner",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter00.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter01",
+      "title": "第1章：Scratch程式語言介紹",
+      "level": "beginner",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter01.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter02",
+      "title": "第2章",
+      "level": "beginner",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter02.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter03",
+      "title": "第3章",
+      "level": "beginner",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter03.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter04",
+      "title": "第4章",
+      "level": "intermediate",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter04.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter05",
+      "title": "第5章",
+      "level": "intermediate",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter05.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter06",
+      "title": "第6章",
+      "level": "intermediate",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter06.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter07",
+      "title": "第7章",
+      "level": "intermediate",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter07.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter08",
+      "title": "第8章",
+      "level": "intermediate",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter08.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter09",
+      "title": "第9章",
+      "level": "intermediate",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter09.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter10",
+      "title": "第10章",
+      "level": "intermediate",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter10.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter11",
+      "title": "第11章",
+      "level": "advanced",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter11.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter12",
+      "title": "第12章",
+      "level": "advanced",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter12.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter13",
+      "title": "第13章",
+      "level": "advanced",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter13.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter14",
+      "title": "第14章",
+      "level": "advanced",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter14.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter15",
+      "title": "第15章",
+      "level": "advanced",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter15.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter16",
+      "title": "第16章",
+      "level": "advanced",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter16.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter17",
+      "title": "第17章",
+      "level": "advanced",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter17.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter18",
+      "title": "第18章",
+      "level": "project",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter18.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter19",
+      "title": "第19章",
+      "level": "project",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter19.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter20",
+      "title": "第20章",
+      "level": "project",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter20.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter21",
+      "title": "第21章",
+      "level": "project",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter21.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter22",
+      "title": "第22章",
+      "level": "project",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter22.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter23",
+      "title": "第23章",
+      "level": "project",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter23.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter24",
+      "title": "第24章",
+      "level": "project",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter24.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter25",
+      "title": "第25章",
+      "level": "project",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter25.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter26",
+      "title": "第26章",
+      "level": "project",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter26.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter27",
+      "title": "第27章",
+      "level": "project",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter27.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter28",
+      "title": "第28章",
+      "level": "project",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter28.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter29",
+      "title": "第29章",
+      "level": "project",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter29.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter30",
+      "title": "第30章",
+      "level": "project",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter30.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter31",
+      "title": "第31章",
+      "level": "project",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter31.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    },
+    {
+      "id": "chapter32",
+      "title": "第32章",
+      "level": "project",
+      "url": "https://github.com/chday169/scratch-web-0218/releases/download/scratch-pdfs-new/chapter32.pdf",
+      "source": "github",
+      "github_repo": "chday169/scratch-web-0218",
+      "release_tag": "scratch-pdfs-new"
+    }
+  ]
+}
