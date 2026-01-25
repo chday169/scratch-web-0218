@@ -1,4 +1,4 @@
-/* ===== 基础重置和变量定义 ===== */
+/* ===== 基礎重置和變數定義 ===== */
 * {
   margin: 0;
   padding: 0;
@@ -6,33 +6,33 @@
 }
 
 :root {
-  /* 主色调 - 匹配 index.html */
+  /* 主色調 - 匹配 index.html */
   --primary-color: #4a6fa5;
   --primary-dark: #3a5a8c;
   --primary-light: #e8f1ff;
   
-  /* 文本颜色 */
+  /* 文字顏色 */
   --text-dark: #2c3e50;
   --text-medium: #495057;
   --text-light: #6c757d;
   
-  /* 背景颜色 */
+  /* 背景顏色 */
   --bg-white: #ffffff;
   --bg-light: #f8f9fa;
   --bg-lighter: #f9f9f9;
   
-  /* 边框和阴影 */
+  /* 邊框和陰影 */
   --border-color: #e9ecef;
   --shadow-light: 0 2px 4px rgba(0,0,0,0.1);
   --shadow-medium: 0 4px 6px rgba(0,0,0,0.15);
   --shadow-heavy: 0 8px 15px rgba(0,0,0,0.2);
   
-  /* 边框圆角 */
+  /* 邊框圓角 */
   --radius-small: 6px;
   --radius-medium: 8px;
   --radius-large: 12px;
   
-  /* 间距 */
+  /* 間距 */
   --space-xs: 8px;
   --space-sm: 16px;
   --space-md: 24px;
@@ -40,7 +40,7 @@
   --space-xl: 48px;
 }
 
-/* ===== 基础样式 ===== */
+/* ===== 基礎樣式 ===== */
 body {
   font-family: 'Microsoft JhengHei', '微軟正黑體', Arial, sans-serif;
   line-height: 1.6;
@@ -58,7 +58,7 @@ body {
   min-height: 100vh;
 }
 
-/* ===== 页面头部 ===== */
+/* ===== 頁面頭部 ===== */
 .page-header {
   text-align: center;
   margin-bottom: var(--space-xl);
@@ -79,7 +79,7 @@ body {
   font-weight: 400;
 }
 
-/* ===== 英雄区域 - 匹配 index.html ===== */
+/* ===== 英雄區域 - 匹配 index.html ===== */
 .hero {
   background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
   color: white;
@@ -106,7 +106,7 @@ body {
   opacity: 0.9;
 }
 
-/* ===== 面包屑导航 ===== */
+/* ===== 麵包屑導航 ===== */
 .breadcrumb {
   margin-bottom: var(--space-lg);
   font-size: 0.9rem;
@@ -127,14 +127,14 @@ body {
   text-decoration: underline;
 }
 
-/* ===== 主要内容区域 ===== */
+/* ===== 主要內容區域 ===== */
 .main-content, .resources-content, .viewer-container, .video-container {
   max-width: 1000px;
   margin: 0 auto;
   padding: var(--space-md);
 }
 
-/* ===== 统计区域 ===== */
+/* ===== 統計區域 ===== */
 .stats {
   display: flex;
   justify-content: center;
@@ -162,7 +162,7 @@ body {
   font-weight: 500;
 }
 
-/* ===== 网格布局 ===== */
+/* ===== 網格佈局 ===== */
 .feature-grid, .resource-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -170,7 +170,7 @@ body {
   margin: var(--space-xl) 0;
 }
 
-/* ===== 卡片样式 ===== */
+/* ===== 卡片樣式 ===== */
 .feature-card, .resource-card {
   background: var(--bg-white);
   border-radius: var(--radius-large);
@@ -209,7 +209,7 @@ body {
   color: var(--text-medium);
 }
 
-/* ===== 按钮样式 ===== */
+/* ===== 按鈕樣式 ===== */
 .btn-container, .nav-buttons {
   display: flex;
   gap: var(--space-sm);
@@ -260,7 +260,7 @@ body {
   min-width: auto;
 }
 
-/* ===== 学习路径样式 ===== */
+/* ===== 學習路徑樣式 ===== */
 .learning-path {
   background: var(--bg-light);
   padding: var(--space-lg);
@@ -288,7 +288,7 @@ body {
   color: var(--text-dark);
 }
 
-/* ===== 资源列表样式 ===== */
+/* ===== 資源列表樣式 ===== */
 .resource-list {
   list-style: none;
   padding: 0;
@@ -330,7 +330,7 @@ body {
   line-height: 1.4;
 }
 
-/* ===== 联系区域 ===== */
+/* ===== 聯絡區域 ===== */
 .contact-section {
   background: linear-gradient(135deg, var(--primary-light) 0%, #f8f9fa 100%);
   padding: var(--space-xl);
@@ -365,7 +365,7 @@ body {
   text-decoration: underline;
 }
 
-/* ===== 学习建议 ===== */
+/* ===== 學習建議 ===== */
 .learning-tips {
   text-align: center;
   margin: var(--space-xl) 0;
@@ -390,7 +390,7 @@ body {
   color: var(--text-medium);
 }
 
-/* ===== 页脚样式 ===== */
+/* ===== 頁尾樣式 ===== */
 footer {
   text-align: center;
   margin-top: var(--space-xl);
@@ -412,7 +412,7 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* ===== 查看器专用样式 ===== */
+/* ===== 檢視器專用樣式 ===== */
 .viewer-content {
   display: grid;
   grid-template-columns: 320px 1fr;
@@ -441,7 +441,7 @@ footer a:hover {
   box-shadow: var(--shadow-light);
 }
 
-/* PDF 查看器样式 */
+/* PDF 檢視器樣式 */
 .pdf-select {
   width: 100%;
   height: 350px;
@@ -476,7 +476,7 @@ footer a:hover {
   background: white;
 }
 
-/* 视频查看器样式 */
+/* 影片檢視器樣式 */
 .video-player-section {
   background: var(--bg-white);
   border-radius: var(--radius-large);
@@ -509,7 +509,7 @@ footer a:hover {
   }
 }
 
-/* ===== 按钮控制 ===== */
+/* ===== 按鈕控制 ===== */
 .page-controls, .video-controls {
   display: flex;
   justify-content: center;
@@ -541,7 +541,7 @@ footer a:hover {
   font-size: 1.1rem;
 }
 
-/* ===== 响应式设计 ===== */
+/* ===== 響應式設計 ===== */
 @media (max-width: 768px) {
   .container {
     padding: var(--space-sm);
@@ -616,7 +616,7 @@ footer a:hover {
   }
 }
 
-/* ===== 工具类 ===== */
+/* ===== 工具類 ===== */
 .text-center {
   text-align: center;
 }
@@ -633,7 +633,7 @@ footer a:hover {
   display: none;
 }
 
-/* ===== 动画效果 ===== */
+/* ===== 動畫效果 ===== */
 @keyframes pulse {
   0% { transform: scale(1); }
   50% { transform: scale(1.1); }
@@ -644,7 +644,7 @@ footer a:hover {
   animation: pulse 0.5s ease;
 }
 
-/* ===== 无障碍支持 ===== */
+/* ===== 無障礙支援 ===== */
 @media (prefers-reduced-motion: reduce) {
   .feature-card, .resource-card,
   .btn, .resource-list a,
@@ -654,7 +654,7 @@ footer a:hover {
   }
 }
 
-/* ===== 打印样式 ===== */
+/* ===== 列印樣式 ===== */
 @media print {
   .hero, .btn-container, .nav-buttons,
   .page-controls, .video-controls {
