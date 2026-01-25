@@ -59,6 +59,77 @@
     .download-link:hover {
       text-decoration: underline;
     }
+    
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #f3f3f3;
+      border-top: 2px solid #3498db;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .status-info {
+      padding: 10px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      margin: 10px 0;
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .pdf-canvas-container {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: auto;
+      max-height: 70vh;
+      background: #f8f9fa;
+    }
+    
+    .zoom-controls {
+      margin-top: 10px;
+      text-align: center;
+    }
+    
+    .zoom-controls .page-btn {
+      padding: 5px 15px;
+      margin: 0 5px;
+    }
+    
+    .error-message {
+      color: #dc3545;
+      background: #f8d7da;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 10px 0;
+      border-left: 4px solid #dc3545;
+    }
+    
+    .download-btn {
+      display: inline-block;
+      padding: 8px 16px;
+      background: #6f42c1;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      margin: 5px;
+      font-weight: bold;
+    }
+    
+    .download-btn:hover {
+      background: #5a32a3;
+      text-decoration: none;
+      color: white;
+    }
   </style>
 </head>
 <body class="container">
@@ -119,22 +190,29 @@
           <div id="githubRepoInfo"></div>
         </div>
         
-        <!-- 保持原有的控制按鈕和統計 -->
+        <div id="downloadSection" style="display: none; text-align: center; margin: 15px 0;">
+          <a id="directDownloadLink" href="#" target="_blank" class="download-btn">⬇️ 直接下載 PDF</a>
+        </div>
+        
         <div class="page-controls">
           <button onclick="prevPage()" class="page-btn">📄 上一頁</button>
           <span class="page-info" id="pageInfo">第 0 頁 / 共 0 頁</span>
           <button onclick="nextPage()" class="page-btn">📄 下一頁</button>
         </div>
         
-        <!-- 其餘部分保持不變 -->
+        <div class="zoom-controls">
+          <button onclick="zoomOut()" class="page-btn">🔍 -</button>
+          <span class="page-info" id="zoomLevel">150%</span>
+          <button onclick="zoomIn()" class="page-btn">🔍 +</button>
+        </div>
       </section>
     </div>
   </main>
   
   <script>
     const manifestURL = './data_scr/manifest.json';
-    const GITHUB_REPO = 'chday169/scratch-web0218';
-    const RELEASE_TAG = 'pdfs-scratch2026';
+    const DEFAULT_GITHUB_REPO = 'chday169/scratch-web-0218';
+    const DEFAULT_RELEASE_TAG = 'pdfs-scratch-new';
     
     let pdfList = [];
     let filteredList = [];
@@ -142,7 +220,6 @@
     let currentPage = 1;
     let totalPages = 1;
     let currentPDF = null;
-    let hasLikedCurrentPDF = false;
     let currentScale = 1.5;
     let currentFilter = {
       level: 'all',
@@ -152,7 +229,7 @@
     // 載入 PDF 清單
     async function loadPDFList() {
       try {
-        showStatus('載入 Scratch 教材清單中...');
+        showStatus('載入 Scratch 教材清單中...', 'loading');
         
         const response = await fetch(manifestURL);
         if (!response.ok) throw new Error('無法載入清單');
@@ -180,14 +257,13 @@
         applyFilters();
         
         if (pdfList.length > 0) {
-          showStatus(`找到 ${pdfList.length} 個教材`);
+          showStatus(`找到 ${pdfList.length} 個教材`, 'success');
         } else {
           showStatus('❌ 沒有可用的 Scratch 教材', 'error');
         }
       } catch (err) {
         console.error('載入錯誤：', err);
-        showStatus('❌ 無法載入教材清單，使用備用資料', 'error');
-        loadFallbackData();
+        showStatus('❌ 無法載入教材清單，請檢查 manifest.json 檔案', 'error');
       }
     }
     
@@ -208,7 +284,10 @@
       }
       
       // 設置默認選中
-      document.querySelector('.level-btn[data-level="all"]').classList.add('active');
+      const allButton = document.querySelector('.level-btn[data-level="all"]');
+      if (allButton) {
+        allButton.classList.add('active');
+      }
     }
     
     function createLevelButton(level, label) {
@@ -222,10 +301,13 @@
     
     function filterLevel(level) {
       // 更新按鈕狀態
-      document.querySelectorAll('.level-btn').forEach(btn => {
+      document.querySelectorAll('.level-buttons .level-btn').forEach(btn => {
         btn.classList.remove('active');
       });
-      document.querySelector(`.level-btn[data-level="${level}"]`).classList.add('active');
+      const targetBtn = document.querySelector(`.level-btn[data-level="${level}"]`);
+      if (targetBtn) {
+        targetBtn.classList.add('active');
+      }
       
       currentFilter.level = level;
       applyFilters();
@@ -260,7 +342,20 @@
       updatePDFSelect();
       
       if (filteredList.length > 0) {
-        showPDF(0);
+        // 保持當前選擇的項目，如果它還在過濾後的列表中
+        let newIndex = -1;
+        if (currentIndex >= 0 && currentIndex < pdfList.length) {
+          const currentItem = pdfList.find((item, idx) => idx === currentIndex);
+          if (currentItem) {
+            newIndex = filteredList.findIndex(item => item.id === currentItem.id);
+          }
+        }
+        
+        if (newIndex >= 0) {
+          showPDF(newIndex);
+        } else {
+          showPDF(0);
+        }
       } else {
         showStatus(`❌ 沒有符合條件的教材`, 'error');
         clearCanvas();
@@ -290,6 +385,11 @@
         select.appendChild(option);
       });
       
+      // 設置當前選中項目
+      if (currentIndex >= 0 && currentIndex < filteredList.length) {
+        select.selectedIndex = currentIndex;
+      }
+      
       // 如果有選中項目，顯示詳細資訊
       if (currentIndex >= 0 && filteredList[currentIndex]) {
         updateFileInfo(filteredList[currentIndex]);
@@ -310,28 +410,37 @@
       const fileDetails = document.getElementById('fileDetails');
       const githubDetails = document.getElementById('githubDetails');
       const githubRepoInfo = document.getElementById('githubRepoInfo');
+      const downloadSection = document.getElementById('downloadSection');
+      const directDownloadLink = document.getElementById('directDownloadLink');
       
       // 顯示基本資訊
       fileDetails.innerHTML = `
         <div>標題：${item.title}</div>
-        <div>等級：${window.pdfCategories?.[item.level] || item.level}</div>
-        <div>來源：${item.source}</div>
+        <div>等級：${window.pdfCategories?.[item.level] || item.level || '未分類'}</div>
+        <div>來源：${item.source || '未知'}</div>
         <div>瀏覽：${item.views || 0} 次</div>
         <div>點讚：${item.likes || 0} 次</div>
       `;
       fileInfo.style.display = 'block';
       
+      // 設置直接下載連結
+      if (item.url) {
+        directDownloadLink.href = item.url;
+        downloadSection.style.display = 'block';
+      }
+      
       // 如果是 GitHub 來源，顯示詳細資訊
       if (item.source === 'github') {
         const filename = getFilenameFromUrl(item.url);
+        // 從 URL 解析倉庫和標籤信息
+        const urlParts = item.url.match(/github\.com\/([^\/]+\/[^\/]+)\/releases\/download\/([^\/]+)\//);
+        const repo = urlParts ? urlParts[1] : DEFAULT_GITHUB_REPO;
+        const tag = urlParts ? urlParts[2] : DEFAULT_RELEASE_TAG;
+        
         githubRepoInfo.innerHTML = `
-          <div>倉庫：${GITHUB_REPO}</div>
-          <div>發布版本：${RELEASE_TAG}</div>
+          <div>倉庫：<a href="https://github.com/${repo}" target="_blank" style="color: #0366d6;">${repo}</a></div>
+          <div>發布版本：<a href="https://github.com/${repo}/releases/tag/${tag}" target="_blank" style="color: #0366d6;">${tag}</a></div>
           <div>檔案名稱：${filename}</div>
-          <div style="margin-top: 8px;">
-            <a href="https://github.com/${GITHUB_REPO}/releases/tag/${RELEASE_TAG}" target="_blank" class="download-link">📦 查看發布頁面</a>
-            <a href="${item.url}" target="_blank" class="download-link">⬇️ 直接下載</a>
-          </div>
         `;
         githubDetails.style.display = 'block';
       } else {
@@ -341,7 +450,9 @@
     
     function getFilenameFromUrl(url) {
       // 從 URL 中提取檔案名稱
-      return url.split('/').pop() || '未知檔案';
+      const filename = url.split('/').pop() || '未知檔案';
+      // 移除可能的查詢參數
+      return filename.split('?')[0];
     }
     
     function showPDF(index) {
@@ -350,7 +461,13 @@
       currentIndex = index;
       const item = filteredList[index];
       
-      showStatus(`載入教材：${item.title}`);
+      // 更新選單選擇
+      const select = document.getElementById('pdfSelect');
+      if (select) {
+        select.selectedIndex = index;
+      }
+      
+      showStatus(`載入教材：${item.title}`, 'loading');
       updateFileInfo(item);
       
       // 記錄瀏覽次數
@@ -362,46 +479,89 @@
     
     async function loadPDFDocument(url) {
       try {
-        // 如果是 GitHub URL，顯示載入來源
+        clearCanvas();
+        showStatus('正在準備載入 PDF...', 'loading');
+
+        // 檢查 URL 是否為 GitHub 直鏈
         if (url.includes('github.com')) {
-          showStatus('正在從 GitHub Releases 載入...');
+          showStatus('正在從 GitHub Releases 獲取檔案...', 'loading');
+          
+          // 對於 GitHub 直鏈，添加時間戳防止緩存
+          const pdfUrl = url + (url.includes('?') ? '&' : '?') + 't=' + Date.now();
+          showStatus(`獲取檔案: ${getFilenameFromUrl(url)}`, 'loading');
+          
+          // 嘗試直接加載 PDF 文檔
+          const loadingTask = pdfjsLib.getDocument({
+            url: pdfUrl,
+            withCredentials: false
+          });
+          
+          currentPDF = await loadingTask.promise;
+          totalPages = currentPDF.numPages;
+          currentPage = 1;
+          
+          await renderPage(currentPage);
+          showStatus(`✅ 成功載入: ${filteredList[currentIndex].title}`, 'success');
+          
+        } else {
+          // 對於非 GitHub 連結，使用原始邏輯
+          const loadingTask = pdfjsLib.getDocument({
+            url: url,
+            withCredentials: false
+          });
+          
+          currentPDF = await loadingTask.promise;
+          totalPages = currentPDF.numPages;
+          currentPage = 1;
+          
+          await renderPage(currentPage);
+          showStatus(`已載入: ${filteredList[currentIndex].title}`, 'success');
         }
         
-        const loadingTask = pdfjsLib.getDocument({
-          url: url,
-          withCredentials: false
-        });
-        
-        currentPDF = await loadingTask.promise;
-        totalPages = currentPDF.numPages;
-        currentPage = 1;
-        
-        await renderPage(currentPage);
-        showStatus(`已載入：${filteredList[currentIndex].title}`);
-        
       } catch (err) {
-        console.error('PDF 載入失敗：', err);
-        showStatus(`❌ 無法載入 PDF：${err.message}`, 'error');
+        console.error('PDF 載入失敗:', err);
+        
+        // 提供更友好的錯誤訊息和下載選項
+        const currentItem = filteredList[currentIndex];
+        let errorMsg = `❌ 無法在瀏覽器中預覽此 PDF。<br>`;
+        
+        if (url.includes('github.com')) {
+          errorMsg += `這可能是由於 GitHub 的存取限制。<br><br>`;
+          errorMsg += `📥 請點擊下方的「直接下載 PDF」按鈕獲取檔案。<br>`;
+          errorMsg += `或者前往: <a href="https://github.com/chday169/scratch-web-0218/releases/tag/pdfs-scratch-new" target="_blank" style="color: #0366d6; text-decoration: underline; font-weight: bold;">GitHub Releases 頁面</a> 手動下載所有教材`;
+        } else {
+          errorMsg += `請檢查檔案連結是否正確。<br>`;
+          errorMsg += `請嘗試直接下載檔案。`;
+        }
+        
+        showStatus(errorMsg, 'error');
+        clearCanvas();
       }
     }
     
     async function renderPage(pageNum) {
       if (!currentPDF) return;
       
-      const page = await currentPDF.getPage(pageNum);
-      const viewport = page.getViewport({ scale: currentScale });
-      const canvas = document.getElementById('pdfCanvas');
-      const context = canvas.getContext('2d');
-      
-      canvas.height = viewport.height;
-      canvas.width = viewport.width;
-      
-      await page.render({
-        canvasContext: context,
-        viewport: viewport
-      }).promise;
-      
-      document.getElementById('pageInfo').textContent = `第 ${pageNum} 頁 / 共 ${totalPages} 頁`;
+      try {
+        const page = await currentPDF.getPage(pageNum);
+        const viewport = page.getViewport({ scale: currentScale });
+        const canvas = document.getElementById('pdfCanvas');
+        const context = canvas.getContext('2d');
+        
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+        
+        await page.render({
+          canvasContext: context,
+          viewport: viewport
+        }).promise;
+        
+        document.getElementById('pageInfo').textContent = `第 ${pageNum} 頁 / 共 ${totalPages} 頁`;
+        document.getElementById('zoomLevel').textContent = `${Math.round(currentScale * 100)}%`;
+      } catch (err) {
+        console.error('頁面渲染失敗：', err);
+        showStatus('❌ 頁面渲染失敗', 'error');
+      }
     }
     
     function clearCanvas() {
@@ -410,6 +570,8 @@
       context.clearRect(0, 0, canvas.width, canvas.height);
       canvas.width = 0;
       canvas.height = 0;
+      document.getElementById('pageInfo').textContent = '第 0 頁 / 共 0 頁';
+      document.getElementById('zoomLevel').textContent = '150%';
     }
     
     function recordView(pdfId) {
@@ -430,50 +592,32 @@
       }
     }
     
-    function recordLike(pdfId) {
-      const key = `pdf_likes_${pdfId}`;
-      let count = parseInt(localStorage.getItem(key) || '0');
-      count++;
-      localStorage.setItem(key, count.toString());
-      
-      // 更新記憶體中的數據
-      const item = pdfList.find(p => p.id === pdfId);
-      if (item) {
-        item.likes = count;
-      }
-      
-      // 更新顯示
-      if (currentIndex >= 0 && filteredList[currentIndex]?.id === pdfId) {
-        updateFileInfo(filteredList[currentIndex]);
-      }
-    }
-    
     function showStatus(message, type = 'info') {
       const statusEl = document.getElementById('statusText');
-      const icon = type === 'error' ? '❌' : type === 'loading' ? '<span class="loading"></span>' : '✅';
+      let icon = '';
+      
+      switch(type) {
+        case 'error':
+          icon = '❌ ';
+          break;
+        case 'loading':
+          icon = '<span class="loading"></span>';
+          break;
+        case 'success':
+          icon = '✅ ';
+          break;
+        default:
+          icon = 'ℹ️ ';
+      }
+      
       statusEl.innerHTML = `${icon} ${message}`;
-    }
-    
-    function loadFallbackData() {
-      pdfList = [
-        {
-          id: 'fallback1',
-          title: '測試教材 1',
-          level: 'beginner',
-          url: 'https://raw.githubusercontent.com/mozilla/pdf.js/gh-pages/web/compressed.tracemonkey-pldi-09.pdf',
-          source: 'external',
-          views: 0,
-          likes: 0
-        }
-      ];
-      applyFilters();
     }
     
     function refreshList() {
       loadPDFList();
     }
     
-    // 保持原有的導航函數
+    // 導航函數
     function prevPage() {
       if (currentPDF && currentPage > 1) {
         currentPage--;
@@ -504,12 +648,55 @@
       window.location.href = 'index.html';
     }
     
+    // 縮放功能
+    function zoomIn() {
+      if (currentScale < 3.0) {
+        currentScale += 0.1;
+        if (currentPDF && currentPage) {
+          renderPage(currentPage);
+        }
+      }
+    }
+    
+    function zoomOut() {
+      if (currentScale > 0.5) {
+        currentScale -= 0.1;
+        if (currentPDF && currentPage) {
+          renderPage(currentPage);
+        }
+      }
+    }
+    
     // 初始化
     document.addEventListener('DOMContentLoaded', loadPDFList);
     
     document.getElementById('pdfSelect').addEventListener('change', function () {
       const index = parseInt(this.value);
       if (!isNaN(index)) showPDF(index);
+    });
+    
+    // 添加鍵盤快捷鍵支援
+    document.addEventListener('keydown', function(event) {
+      // 左方向鍵：上一頁
+      if (event.key === 'ArrowLeft') {
+        prevPage();
+        event.preventDefault();
+      }
+      // 右方向鍵：下一頁
+      else if (event.key === 'ArrowRight') {
+        nextPage();
+        event.preventDefault();
+      }
+      // 上方向鍵 + Ctrl：上一個PDF
+      else if (event.key === 'ArrowUp' && event.ctrlKey) {
+        prevPDF();
+        event.preventDefault();
+      }
+      // 下方向鍵 + Ctrl：下一個PDF
+      else if (event.key === 'ArrowDown' && event.ctrlKey) {
+        nextPDF();
+        event.preventDefault();
+      }
     });
   </script>
 </body>
