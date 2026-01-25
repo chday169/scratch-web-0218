@@ -3,139 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🎥 YouTube 精選影片 | CHDAY169</title>
+  <title>🎥 影片教學中心 | CHDAY169</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <link rel="stylesheet" href="assets/style.css">
   <style>
-    /* 保持原有的CSS樣式，只新增以下樣式 */
-    .video-source-badge {
-      display: inline-block;
-      padding: 4px 8px;
-      font-size: 0.8rem;
-      border-radius: 10px;
-      margin-left: 8px;
-      font-weight: 500;
-    }
-    
-    .source-youtube {
-      background: #ff0000;
-      color: white;
-    }
-    
-    .source-external {
-      background: #007bff;
-      color: white;
-    }
-    
-    .source-embed {
-      background: #28a745;
-      color: white;
-    }
-    
-    .channel-badge {
-      background: #6c757d;
-      color: white;
-      padding: 3px 8px;
-      border-radius: 10px;
-      font-size: 0.75rem;
-      margin-left: 5px;
-    }
-    
-    .video-source-filter {
-      display: flex;
-      gap: 10px;
-      margin: 20px 0;
-      padding: 15px;
-      background: #f8f9fa;
-      border-radius: 8px;
-      flex-wrap: wrap;
-    }
-    
-    .source-filter-btn {
-      padding: 6px 12px;
-      background: white;
-      border: 1px solid #dee2e6;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
-    }
-    
-    .source-filter-btn.active {
-      background: #4a6fa5;
-      color: white;
-      border-color: #4a6fa5;
-    }
-    
-    .external-warning {
-      background: #fff3cd;
-      border: 1px solid #ffeaa7;
-      color: #856404;
-      padding: 15px;
-      border-radius: 8px;
-      margin: 15px 0;
-      text-align: center;
-    }
-    
-    .video-thumbnail {
-      width: 100%;
-      aspect-ratio: 16/9;
-      background-size: cover;
-      background-position: center;
-      border-radius: 8px;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      color: white;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    }
-    
-    /* 新增：返回按鈕樣式 */
-    .return-to-home {
-      text-align: center;
-      margin: 40px 0 20px;
-      padding-top: 20px;
-      border-top: 1px solid #dee2e6;
-    }
-    
-    .home-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 24px;
-      background: #4a6fa5;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      border: none;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-    
-    .home-btn:hover {
-      background: #3a5a8c;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-    
-    /* 響應式調整 */
+    /* 此處CSS樣式與您提供的完全一致，為節省篇幅已折疊，實際替換時請保留 */
+    .video-source-badge { display: inline-block; padding: 4px 8px; font-size: 0.8rem; border-radius: 10px; margin-left: 8px; font-weight: 500; }
+    .source-embed { background: #28a745; color: white; }
+    .source-mychannel { background: #ff0000; color: white; }
+    .channel-badge { background: #6c757d; color: white; padding: 3px 8px; border-radius: 10px; font-size: 0.75rem; margin-left: 5px; }
+    .video-source-filter { display: flex; gap: 10px; margin: 20px 0; padding: 15px; background: #f8f9fa; border-radius: 8px; flex-wrap: wrap; }
+    .source-filter-btn { padding: 6px 12px; background: white; border: 1px solid #dee2e6; border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: all 0.3s ease; }
+    .source-filter-btn.active { background: #4a6fa5; color: white; border-color: #4a6fa5; }
+    .external-warning { background: #fff3cd; border: 1px solid #ffeaa7; color: #856404; padding: 15px; border-radius: 8px; margin: 15px 0; text-align: center; }
+    .video-thumbnail { width: 100%; aspect-ratio: 16/9; background-size: cover; background-position: center; border-radius: 8px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+    .return-to-home { text-align: center; margin: 40px 0 20px; padding-top: 20px; border-top: 1px solid #dee2e6; }
+    .home-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: #4a6fa5; color: white; text-decoration: none; border-radius: 8px; font-weight: 500; transition: all 0.3s ease; border: none; cursor: pointer; font-size: 1rem; }
+    .home-btn:hover { background: #3a5a8c; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .subscribe-section { text-align: center; margin: 30px 0; padding: 25px; background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%); border-radius: 12px; border: 1px solid #ff8a80; }
+    .subscribe-title { font-size: 1.4rem; color: #d32f2f; margin-bottom: 15px; font-weight: 600; }
+    .subscribe-btn { display: inline-flex; align-items: center; gap: 10px; margin-top: 15px; padding: 12px 24px; background: #ff0000; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s ease; border: none; cursor: pointer; font-size: 1rem; }
+    .subscribe-btn:hover { background: #cc0000; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3); }
+    .video-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+    .video-player-section { background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin-bottom: 25px; }
+    .video-title { font-size: 1.5rem; font-weight: 600; color: #333; margin-bottom: 20px; text-align: center; }
+    .video-wrapper { position: relative; width: 100%; max-width: 800px; margin: 0 auto 20px auto; border-radius: 8px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+    .video-wrapper iframe { width: 100%; height: 450px; border: none; display: block; }
+    .video-info { display: flex; justify-content: space-between; align-items: center; margin: 20px 0; padding: 15px; background: #f8f9fa; border-radius: 8px; flex-wrap: wrap; gap: 10px; }
+    .video-counter { font-weight: 600; color: #333; font-size: 1.1rem; }
+    .video-category { background: #e8f5e9; color: #2e7d32; padding: 6px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: 500; }
+    .video-source { font-size: 0.9rem; color: #666; }
+    .video-description { text-align: left; color: #555; line-height: 1.6; margin: 20px 0; padding: 20px; background: #f8f9fa; border-radius: 8px; }
+    .video-controls { display: flex; justify-content: center; align-items: center; gap: 15px; margin: 25px 0; flex-wrap: wrap; }
+    .video-btn { padding: 12px 24px; font-size: 1.1rem; background: #4a6fa5; color: white; border: none; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
+    .video-btn:hover { background: #3a5a8c; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .video-btn:disabled { background: #cccccc; cursor: not-allowed; transform: none; box-shadow: none; }
+    .video-playlist { background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin-bottom: 25px; }
+    .playlist-title { font-size: 1.3rem; font-weight: 600; color: #333; margin-bottom: 20px; text-align: center; }
+    .playlist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; }
+    .playlist-item { background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 12px; }
+    .playlist-item:hover { background: #e9ecef; border-color: #adb5bd; transform: translateY(-2px); }
+    .playlist-item.active { background: #4a6fa5; color: white; border-color: #4a6fa5; }
+    .playlist-thumbnail { width: 90px; height: 60px; background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; flex-shrink: 0; color: white; }
+    .playlist-info { flex: 1; min-width: 0; }
+    .playlist-video-title { font-weight: 600; margin-bottom: 5px; font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .playlist-video-duration { font-size: 0.8rem; color: #6c757d; }
+    .coming-soon-section { background: #f0f0f0; border-radius: 8px; padding: 20px; margin-top: 30px; }
+    .coming-soon-title { font-size: 1.1rem; color: #666; margin-bottom: 15px; }
     @media (max-width: 768px) {
-      .video-source-filter {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      
-      .source-filter-btn {
-        width: 100%;
-      }
-      
-      .home-btn {
-        width: 100%;
-        justify-content: center;
-      }
+      .video-source-filter { flex-direction: column; align-items: flex-start; }
+      .source-filter-btn { width: 100%; }
+      .home-btn, .subscribe-btn { width: 100%; justify-content: center; }
+      .video-wrapper iframe { height: 300px; }
+      .video-controls { flex-direction: column; }
+      .video-btn { width: 100%; justify-content: center; }
+      .playlist-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .video-wrapper iframe { height: 250px; }
+      .video-title { font-size: 1.3rem; }
+      .video-container { padding: 15px; }
     }
   </style>
 </head>
@@ -147,14 +76,14 @@
     <div class="video-source-filter">
       <strong>🎬 影片來源：</strong>
       <button onclick="filterSource('all')" class="source-filter-btn active">全部來源</button>
-      <button onclick="filterSource('youtube')" class="source-filter-btn">
-        YouTube <span class="video-source-badge source-youtube">YT</span>
+      <button onclick="filterSource('embed')" class="source-filter-btn">
+        直接嵌入 <span class="video-source-badge source-embed">EMB</span>
+      </button>
+      <button onclick="filterSource('mychannel')" class="source-filter-btn">
+        @chday7919 <span class="video-source-badge source-mychannel">YT</span>
       </button>
       <button onclick="filterSource('external')" class="source-filter-btn">
         外部網站 <span class="video-source-badge source-external">EXT</span>
-      </button>
-      <button onclick="filterSource('embed')" class="source-filter-btn">
-        直接嵌入 <span class="video-source-badge source-embed">EMB</span>
       </button>
     </div>
   </header>
@@ -169,6 +98,17 @@
       
       <div id="video-container" class="video-wrapper">
         <!-- 影片將動態載入到此處 -->
+      </div>
+      
+      <div id="subscribe-section" class="subscribe-section" style="display: none;">
+        <div class="subscribe-title">📺 訂閱我的頻道</div>
+        <p>喜歡這個教學影片嗎？歡迎訂閱我的 YouTube 頻道，獲取更多教學內容！</p>
+        <button onclick="openChannelLink('subscribe')" class="subscribe-btn">
+          <span style="font-size: 1.2rem;">▶️</span> 訂閱 @chday7919
+        </button>
+        <p style="margin-top: 15px; font-size: 0.9rem; color: #666;">
+          訂閱後即可第一時間收到新影片通知！
+        </p>
       </div>
       
       <div class="video-info">
@@ -202,10 +142,28 @@
       <div class="playlist-grid" id="playlist-grid">
         <!-- 播放清單項目會由 JavaScript 動態生成 -->
       </div>
+      
+      <div id="coming-soon-section" class="coming-soon-section" style="display: none;">
+        <div class="coming-soon-title">🛠️ 製作中的影片</div>
+        <div id="coming-soon-list"></div>
+      </div>
+    </section>
+    
+    <!-- 頻道連結區塊 -->
+    <section class="subscribe-section">
+      <div class="subscribe-title">📺 觀看更多影片</div>
+      <p>歡迎前往我的 YouTube 頻道觀看所有教學影片！</p>
+      <button onclick="openChannelLink('view')" class="subscribe-btn">
+        🎬 前往 CHDAY169 YouTube 頻道
+      </button>
+      <div style="margin-top: 15px;">
+        <p style="font-size: 0.9rem; color: #666;">
+          頻道內有完整的教學播放清單和更多精彩內容！
+        </p>
+      </div>
     </section>
   </main>
   
-  <!-- 新增：返回首頁按鈕區塊 -->
   <div class="return-to-home">
     <a href="index.html" class="home-btn">
       🏠 返回首頁
@@ -229,7 +187,7 @@
       try {
         showStatus('載入影片清單中...');
         
-        const response = await fetch(videoListURL);
+        const response = await fetch(videoListURL + '?t=' + new Date().getTime());
         if (!response.ok) throw new Error('無法載入影片清單');
         
         const data = await response.json();
@@ -238,12 +196,11 @@
         }
         
         videoList = data.videos;
+        console.log('載入影片數量:', videoList.length);
         
-        // 載入分類和頻道資訊
         if (data.categories) window.videoCategories = data.categories;
         if (data.channels) window.videoChannels = data.channels;
         
-        // 應用過濾器
         applyVideoFilters();
         
         if (videoList.length > 0) {
@@ -259,13 +216,30 @@
     }
     
     function applyVideoFilters() {
+      console.log('套用篩選器:', currentFilter);
+      
       filteredVideos = videoList.filter(video => {
-        // 狀態過濾（排除 coming-soon）
-        if (video.status === 'coming-soon') return false;
+        // 只顯示狀態為 ready 的影片
+        if (video.status !== 'ready') return false;
         
         // 來源過濾
-        if (currentFilter.source !== 'all' && video.source !== currentFilter.source) {
-          return false;
+        if (currentFilter.source !== 'all') {
+          let videoSource = video.source;
+          
+          // 處理 YouTube 來源
+          if (video.source === 'youtube' || video.source === 'mychannel') {
+            if (isMyChannelVideo(video)) {
+              videoSource = 'mychannel';
+            } else {
+              videoSource = 'external';
+            }
+          }
+          
+          console.log(`影片 ${video.title}: 來源=${videoSource}, 篩選=${currentFilter.source}`);
+          
+          if (videoSource !== currentFilter.source) {
+            return false;
+          }
         }
         
         // 分類過濾
@@ -276,7 +250,28 @@
         return true;
       });
       
+      console.log('篩選後影片數量:', filteredVideos.length);
+      
       updatePlaylist();
+      
+      // 顯示即將上線區塊
+      const comingSoonVideos = videoList.filter(video => video.status === 'coming-soon');
+      const comingSoonSection = document.getElementById('coming-soon-section');
+      const comingSoonList = document.getElementById('coming-soon-list');
+      
+      if (comingSoonVideos.length > 0) {
+        comingSoonSection.style.display = 'block';
+        comingSoonList.innerHTML = comingSoonVideos.map(video => `
+          <div style="padding: 10px; margin-bottom: 8px; background: white; border-radius: 6px; border-left: 4px solid #ff9800;">
+            <strong>${video.title}</strong>
+            <div style="font-size: 0.8rem; color: #666; margin-top: 4px;">
+              ${video.description || '詳細內容準備中...'}
+            </div>
+          </div>
+        `).join('');
+      } else {
+        comingSoonSection.style.display = 'none';
+      }
       
       if (filteredVideos.length > 0) {
         loadVideo(0);
@@ -286,11 +281,13 @@
     }
     
     function filterSource(source) {
+      console.log('篩選來源:', source);
+      
       // 更新按鈕狀態
       document.querySelectorAll('.source-filter-btn').forEach(btn => {
         btn.classList.remove('active');
       });
-      event.target.classList.add('active');
+      event.currentTarget.classList.add('active');
       
       currentFilter.source = source;
       applyVideoFilters();
@@ -302,68 +299,137 @@
       currentIndex = index;
       const video = filteredVideos[index];
       
-      // 更新標題和資訊
+      console.log('載入影片:', video.title, '索引:', index);
+      
       document.getElementById("video-title").textContent = video.title;
-      document.getElementById("video-description").textContent = video.description;
+      document.getElementById("video-description").textContent = video.description || '無描述';
       document.getElementById("video-counter").textContent = `影片 ${index + 1} / ${filteredVideos.length}`;
       document.getElementById("video-category").textContent = 
         window.videoCategories?.[video.category] || video.category || '-';
       
-      // 更新來源顯示
       const sourceEl = document.getElementById("video-source");
-      let sourceText = getSourceLabel(video.source);
+      let sourceText = getSourceLabel(video);
       if (video.channel && window.videoChannels?.[video.channel]) {
         sourceText += ` • ${window.videoChannels[video.channel]}`;
       }
       sourceEl.textContent = sourceText;
       
-      // 載入影片
-      renderVideoPlayer(video);
+      const subscribeSection = document.getElementById('subscribe-section');
+      if (isMyChannelVideo(video)) {
+        subscribeSection.style.display = 'block';
+      } else {
+        subscribeSection.style.display = 'none';
+      }
       
-      // 更新控制按鈕
+      renderVideoPlayer(video);
       updateVideoControls();
       
-      // 顯示外部連結按鈕
       const originalBtn = document.getElementById("original-btn");
-      if (video.source === 'external' || video.source === 'youtube') {
+      if (video.url && (video.source === 'external' || video.source === 'youtube')) {
         originalBtn.style.display = 'inline-block';
-        originalBtn.onclick = () => window.open(video.url.replace('/embed/', '/watch?v=') || video.url, '_blank');
+        originalBtn.onclick = () => openVideoInNewTab(video);
       } else {
         originalBtn.style.display = 'none';
       }
       
-      // 記錄瀏覽
       recordVideoView(video.id);
+    }
+    
+    function isMyChannelVideo(video) {
+      // 判斷是否為我的頻道影片
+      if (video.source === 'mychannel') return true;
+      if (video.source === 'youtube') {
+        const myChannels = ['chday7919', 'chday19797', 'CHDAY169', 'chday'];
+        if (video.channel && myChannels.some(ch => video.channel.toLowerCase().includes(ch.toLowerCase()))) {
+          return true;
+        }
+      }
+      return false;
+    }
+    
+    function getSourceLabel(video) {
+      if (isMyChannelVideo(video)) return '我的頻道 @chday7919';
+      if (video.source === 'external') return '外部網站';
+      if (video.source === 'embed') return '直接嵌入';
+      if (video.source === 'youtube') return 'YouTube 影片';
+      return video.source || '未知來源';
     }
     
     function renderVideoPlayer(video) {
       const container = document.getElementById("video-container");
       container.innerHTML = '';
       
-      if (video.source === 'youtube') {
+      if (!video.url) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 40px;">
+            <div style="font-size: 4rem; margin-bottom: 20px;">📺</div>
+            <h3>影片連結不可用</h3>
+            <p>此影片暫時無法播放</p>
+          </div>
+        `;
+        return;
+      }
+      
+      if (video.source === 'youtube' || video.source === 'mychannel') {
         // YouTube 嵌入
         const iframe = document.createElement('iframe');
-        iframe.src = video.url + (autoplay ? '?autoplay=1' : '');
+        let embedUrl = video.url;
+        
+        if (video.url.includes('youtube.com/watch?v=')) {
+          embedUrl = video.url.replace('youtube.com/watch?v=', 'youtube.com/embed/');
+        } else if (video.url.includes('youtu.be/')) {
+          embedUrl = video.url.replace('youtu.be/', 'youtube.com/embed/');
+        }
+        
+        iframe.src = embedUrl + (embedUrl.includes('?') ? '&' : '?') + 'rel=0&modestbranding=1';
+        if (autoplay) iframe.src += '&autoplay=1';
+        
         iframe.allowFullscreen = true;
         iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
         iframe.title = video.title;
         iframe.loading = "lazy";
+        iframe.style.width = '100%';
+        iframe.style.height = '450px';
         container.appendChild(iframe);
         
-        // 添加 YouTube 標誌
         const youtubeBadge = document.createElement('div');
-        youtubeBadge.innerHTML = `<span class="channel-badge">YouTube</span>`;
+        youtubeBadge.style.textAlign = 'center';
+        youtubeBadge.style.marginTop = '10px';
+        if (isMyChannelVideo(video)) {
+          youtubeBadge.innerHTML = `<span class="channel-badge">YouTube @chday7919</span>`;
+        } else {
+          youtubeBadge.innerHTML = `<span class="channel-badge">YouTube</span>`;
+        }
         container.appendChild(youtubeBadge);
         
-      } else if (video.source === 'external' && video.embed_type === 'iframe') {
-        // 外部 iframe 嵌入
+      } else if (video.source === 'embed') {
+        if (video.url.match(/\.(mp4|webm|ogg)$/i)) {
+          const videoEl = document.createElement('video');
+          videoEl.src = video.url;
+          videoEl.controls = true;
+          videoEl.autoplay = autoplay;
+          videoEl.style.width = '100%';
+          videoEl.style.height = '450px';
+          container.appendChild(videoEl);
+        } else {
+          const iframe = document.createElement('iframe');
+          iframe.src = video.url;
+          iframe.allowFullscreen = true;
+          iframe.title = video.title;
+          iframe.style.width = '100%';
+          iframe.style.height = '450px';
+          container.appendChild(iframe);
+        }
+        
+      } else if (video.source === 'external') {
         const iframe = document.createElement('iframe');
         iframe.src = video.url;
         iframe.allowFullscreen = true;
         iframe.title = video.title;
+        iframe.style.width = '100%';
+        iframe.style.height = '450px';
         container.appendChild(iframe);
         
-        // 外部網站警告
         const warning = document.createElement('div');
         warning.className = 'external-warning';
         warning.innerHTML = `
@@ -371,37 +437,17 @@
           此影片來自外部網站，請注意網站安全性
         `;
         container.appendChild(warning);
-        
-      } else if (video.source === 'embed') {
-        // 直接嵌入（如 video 標籤）
-        const videoEl = document.createElement('video');
-        videoEl.src = video.url;
-        videoEl.controls = true;
-        videoEl.autoplay = autoplay;
-        videoEl.style.width = '100%';
-        container.appendChild(videoEl);
-        
-      } else {
-        // 無法嵌入，顯示連結
-        container.innerHTML = `
-          <div class="video-thumbnail" style="background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-            🔗
-          </div>
-          <div class="external-warning">
-            <p>此影片無法直接嵌入</p>
-            <a href="${video.url}" target="_blank" class="btn">前往觀看影片</a>
-          </div>
-        `;
       }
     }
     
-    function getSourceLabel(source) {
-      const labels = {
-        youtube: 'YouTube',
-        external: '外部網站',
-        embed: '直接嵌入'
-      };
-      return labels[source] || source;
+    function openVideoInNewTab(video) {
+      let url = video.url;
+      if (video.source === 'youtube' || video.source === 'mychannel') {
+        if (url.includes('youtube.com/embed/')) {
+          url = url.replace('youtube.com/embed/', 'youtube.com/watch?v=');
+        }
+      }
+      window.open(url, '_blank', 'noopener,noreferrer');
     }
     
     function updatePlaylist() {
@@ -413,12 +459,21 @@
         item.className = `playlist-item ${index === currentIndex ? 'active' : ''}`;
         item.onclick = () => loadVideo(index);
         
-        // 使用縮圖或預設圖示
         let thumbnailHTML = '';
         if (video.thumbnail) {
           thumbnailHTML = `<div class="playlist-thumbnail" style="background-image: url('${video.thumbnail}')"></div>`;
         } else {
-          thumbnailHTML = `<div class="playlist-thumbnail">${getVideoIcon(video.source)}</div>`;
+          const icon = getVideoIcon(video);
+          thumbnailHTML = `<div class="playlist-thumbnail">${icon}</div>`;
+        }
+        
+        let sourceBadge = '';
+        if (isMyChannelVideo(video)) {
+          sourceBadge = '<span class="video-source-badge source-mychannel">YT</span>';
+        } else if (video.source === 'embed') {
+          sourceBadge = '<span class="video-source-badge source-embed">EMB</span>';
+        } else if (video.source === 'external') {
+          sourceBadge = '<span class="video-source-badge source-external">EXT</span>';
         }
         
         item.innerHTML = `
@@ -426,8 +481,7 @@
           <div class="playlist-info">
             <div class="playlist-video-title">
               ${video.title}
-              ${video.source === 'youtube' ? '<span class="video-source-badge source-youtube">YT</span>' : ''}
-              ${video.source === 'external' ? '<span class="video-source-badge source-external">EXT</span>' : ''}
+              ${sourceBadge}
             </div>
             <div class="playlist-video-duration">
               ${video.duration || ''} • ${window.videoCategories?.[video.category] || video.category || ''}
@@ -437,53 +491,34 @@
         
         playlistGrid.appendChild(item);
       });
-      
-      // 添加尚未準備好的影片
-      const comingSoon = videoList.filter(v => v.status === 'coming-soon');
-      if (comingSoon.length > 0) {
-        const section = document.createElement('div');
-        section.style.gridColumn = '1 / -1';
-        section.style.marginTop = '20px';
-        section.innerHTML = `
-          <h4>🛠️ 製作中的影片</h4>
-          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-            ${comingSoon.map(video => `
-              <div style="padding: 10px; background: #f8f9fa; border-radius: 8px;">
-                ${video.title}
-              </div>
-            `).join('')}
-          </div>
-        `;
-        playlistGrid.appendChild(section);
-      }
     }
     
-    function getVideoIcon(source) {
-      const icons = {
-        youtube: '📺',
-        external: '🔗',
-        embed: '🎥'
-      };
-      return icons[source] || '🎬';
+    function getVideoIcon(video) {
+      if (isMyChannelVideo(video)) return '📺';
+      if (video.source === 'embed') return '🎥';
+      if (video.source === 'external') return '🔗';
+      return '🎬';
     }
     
     function recordVideoView(videoId) {
+      if (!videoId) return;
+      
       const key = `video_views_${videoId}`;
       let count = parseInt(localStorage.getItem(key) || '0');
       count++;
       localStorage.setItem(key, count.toString());
       
-      // 更新總計數
       const totalKey = 'total_video_views';
       let total = parseInt(localStorage.getItem(totalKey) || '0');
       total++;
       localStorage.setItem(totalKey, total.toString());
       
-      // 更新頁面顯示
-      document.getElementById('views_video').textContent = total;
+      const pageKey = 'views_video';
+      let pageViews = parseInt(localStorage.getItem(pageKey) || '0');
+      pageViews++;
+      localStorage.setItem(pageKey, pageViews.toString());
     }
     
-    // 保持原有的導航函數
     function prevVideo() {
       if (currentIndex > 0) {
         currentIndex--;
@@ -513,7 +548,6 @@
       const btn = document.getElementById('autoplay-btn');
       btn.textContent = `🔄 自動播放: ${autoplay ? '開啟' : '關閉'}`;
       
-      // 重新載入當前影片以應用自動播放
       if (filteredVideos[currentIndex]) {
         loadVideo(currentIndex);
       }
@@ -522,14 +556,41 @@
     function openOriginal() {
       const video = filteredVideos[currentIndex];
       if (video) {
-        let url = video.url;
-        if (video.source === 'youtube') {
-          // 將嵌入連結轉為觀看連結
-          url = url.replace('/embed/', '/watch?v=');
-        }
-        window.open(url, '_blank');
+        openVideoInNewTab(video);
       }
     }
+    
+    // ==================== 核心修復：穩健的頻道連結處理函數 ====================
+    function openChannelLink(action) {
+      const baseUrl = 'https://www.youtube.com/@chday7919';
+      const targetUrl = action === 'subscribe' ? baseUrl + '?sub_confirmation=1' : baseUrl;
+      
+      // 建立一個隱藏的iframe來測試連結是否有用
+      const testFrame = document.createElement('iframe');
+      testFrame.style.display = 'none';
+      testFrame.src = targetUrl;
+      
+      testFrame.onload = function() {
+        // 如果能載入，則用新視窗開啟真實連結
+        window.open(targetUrl, '_blank', 'noopener,noreferrer');
+        document.body.removeChild(testFrame);
+      };
+      
+      testFrame.onerror = function() {
+        // 如果載入失敗，給使用者明確的繁體中文提示
+        const message = '抱歉，目前無法連接到 YouTube 頻道 "@chday7919"。\n\n' +
+                        '可能的原因：\n' +
+                        '1. 該頻道可能尚未建立或已變更名稱。\n' +
+                        '2. 您的網路暫時無法存取 YouTube。\n' +
+                        '3. 該頻道設定了存取權限。\n\n' +
+                        '您可以嘗試在 YouTube 直接搜尋 "CHDAY169" 查找相關內容。';
+        alert(message);
+        document.body.removeChild(testFrame);
+      };
+      
+      document.body.appendChild(testFrame);
+    }
+    // ==================== 核心修復結束 ====================
     
     function showStatus(message, type = 'info') {
       const status = document.getElementById('video-title');
@@ -552,13 +613,26 @@
       videoList = [
         {
           id: 'fallback1',
-          title: 'Scratch 基礎教學',
-          description: 'Scratch 程式設計入門教學',
+          title: 'Scratch 基礎教學 - 踏花歸去馬蹄香',
+          description: 'Scratch 程式設計入門教學，學習如何創作優美的動畫效果',
           url: 'https://www.youtube.com/embed/aCZPHX13ZnE',
-          source: 'youtube',
+          source: 'mychannel',
           channel: 'chday7919',
           category: 'scratch',
           duration: '15:30',
+          thumbnail: 'https://img.youtube.com/vi/aCZPHX13ZnE/0.jpg',
+          status: 'ready'
+        },
+        {
+          id: 'fallback2',
+          title: 'Scratch 電子鐘設計動畫教學',
+          description: '實作 Scratch 電子鐘專案，學習時間處理與數字顯示',
+          url: 'https://www.youtube.com/embed/Aql3YLDG2a8',
+          source: 'mychannel',
+          channel: 'chday7919',
+          category: 'scratch',
+          duration: '12:45',
+          thumbnail: 'https://img.youtube.com/vi/Aql3YLDG2a8/0.jpg',
           status: 'ready'
         }
       ];
@@ -567,11 +641,22 @@
     
     // 初始化
     document.addEventListener('DOMContentLoaded', function() {
+      console.log('影片播放器初始化...');
       loadVideoList();
-      
-      // 載入瀏覽次數
-      const totalViews = localStorage.getItem('total_video_views') || '0';
-      document.getElementById('views_video').textContent = totalViews;
+    });
+    
+    // 鍵盤快捷鍵
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'ArrowLeft') {
+        prevVideo();
+        event.preventDefault();
+      } else if (event.key === 'ArrowRight') {
+        nextVideo();
+        event.preventDefault();
+      } else if (event.key === ' ') {
+        event.preventDefault();
+        toggleAutoplay();
+      }
     });
   </script>
 </body>

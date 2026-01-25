@@ -3,846 +3,352 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- 减少Firefox页面预览错误 -->
-  <meta name="robots" content="noimageindex, noarchive, nosnippet">
-  <meta name="googlebot" content="noimageindex">
-  
-  <title>🎨 Scratch 教材瀏覽器 | CHDAY169</title>
+  <title>📚 Scratch 教材瀏覽器</title>
   <link rel="stylesheet" href="assets/style.css">
-  
-  <!-- 使用稳定版本的PDF.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.9.179/pdf.min.js"></script>
-  <script>
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.9.179/pdf.worker.min.js';
-  </script>
-  
   <style>
-    /* 减少自定义标题栏相关的警告 */
-    .titlebar {
-      -moz-window-dragging: drag;
+    /* PDF 列表樣式 */
+    .pdf-container {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 30px;
+      margin-top: 20px;
     }
     
-    /* 保持原有的CSS樣式 */
-    .source-badge {
+    .pdf-list {
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    
+    .pdf-item {
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+      border: 2px solid #e9ecef;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .pdf-item:hover {
+      border-color: #4a6fa5;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .pdf-item.embedded {
+      border-left: 5px solid #4a6fa5;
+    }
+    
+    .pdf-item.download-only {
+      border-left: 5px solid #28a745;
+    }
+    
+    .pdf-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #2c3e50;
+      margin-bottom: 8px;
+    }
+    
+    .pdf-description {
+      font-size: 0.9rem;
+      color: #6c757d;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    
+    .pdf-status {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+    }
+    
+    .status-badge {
       display: inline-block;
-      padding: 4px 10px;
+      padding: 3px 10px;
+      border-radius: 20px;
       font-size: 0.8rem;
-      border-radius: 12px;
-      margin-left: 8px;
       font-weight: 500;
     }
     
-    .source-local {
+    .status-badge.embedded {
+      background: #4a6fa5;
+      color: white;
+    }
+    
+    .status-badge.download {
       background: #28a745;
       color: white;
     }
     
-    .source-github {
+    .pdf-stats {
+      font-size: 0.85rem;
+      color: #adb5bd;
+      margin-top: 10px;
+    }
+    
+    .action-btn {
+      margin-top: 10px;
+      padding: 5px 15px;
       background: #6f42c1;
       color: white;
-    }
-    
-    .source-external {
-      background: #fd7e14;
-      color: white;
-    }
-    
-    .source-selector {
-      margin: 15px 0;
-      padding: 10px;
-      background: #f8f9fa;
-      border-radius: 8px;
-    }
-    
-    .github-info {
-      background: #e8f1ff;
-      padding: 10px;
-      border-radius: 8px;
-      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
       font-size: 0.9rem;
+      transition: all 0.3s ease;
     }
     
-    .loading {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      border: 2px solid #f3f3f3;
-      border-top: 2px solid #3498db;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-right: 10px;
-      vertical-align: middle;
-    }
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    .status-info {
-      padding: 10px;
-      background: #f8f9fa;
-      border-radius: 8px;
-      margin: 10px 0;
-      min-height: 40px;
-      display: flex;
-      align-items: center;
-    }
-    
-    .pdf-canvas-container {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      overflow: auto;
-      max-height: 70vh;
-      background: #f8f9fa;
-    }
-    
-    .zoom-controls {
-      margin-top: 10px;
-      text-align: center;
+    .action-btn:hover {
+      background: #5a32a3;
     }
     
     .download-btn {
-      display: inline-block;
-      padding: 8px 16px;
-      background: #6f42c1;
-      color: white;
-      border-radius: 6px;
-      text-decoration: none;
-      margin: 5px;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
+      background: #28a745;
     }
     
     .download-btn:hover {
-      background: #5a32a3;
+      background: #218838;
+    }
+    
+    /* PDF 檢視器樣式 */
+    .pdf-viewer {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      display: none;
+    }
+    
+    .pdf-viewer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      border-bottom: 1px solid #e9ecef;
+      background: #f8f9fa;
+      border-radius: 10px 10px 0 0;
+    }
+    
+    .pdf-viewer-header h3 {
+      margin: 0;
+      color: #2c3e50;
+    }
+    
+    .close-viewer {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #6c757d;
+      padding: 0 10px;
+    }
+    
+    .close-viewer:hover {
+      color: #dc3545;
+    }
+    
+    .pdf-viewer-content {
+      padding: 20px;
+    }
+    
+    .pdf-viewer-content iframe {
+      width: 100%;
+      height: 500px;
+      border: 1px solid #dee2e6;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    
+    .pdf-info {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+    }
+    
+    .view-count {
+      display: inline-block;
+      background: #4a6fa5;
+      color: white;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      margin-right: 10px;
+    }
+    
+    .download-link {
+      display: inline-block;
+      padding: 8px 15px;
+      background: #28a745;
+      color: white;
       text-decoration: none;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+    
+    .download-link:hover {
+      background: #218838;
       color: white;
     }
     
-    /* PDF查看器狀態指示器 */
-    .viewer-status {
+    /* 篩選器樣式 */
+    .filter-section {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .filter-select {
+      width: 100%;
       padding: 10px;
-      border-radius: 8px;
+      border: 1px solid #dee2e6;
+      border-radius: 5px;
+      font-size: 1rem;
+      color: #495057;
+    }
+    
+    .stats-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+    
+    .stats-number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #4a6fa5;
       margin: 10px 0;
     }
     
-    .status-success {
-      background: #d4edda;
-      color: #155724;
-      border: 1px solid #c3e6cb;
+    .stats-label {
+      color: #6c757d;
+      font-size: 0.9rem;
     }
     
-    .status-error {
-      background: #f8d7da;
-      color: #721c24;
-      border: 1px solid #f5c6cb;
-    }
-    
-    .status-warning {
-      background: #fff3cd;
-      color: #856404;
-      border: 1px solid #ffeaa7;
+    @media (max-width: 768px) {
+      .pdf-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .pdf-viewer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1000;
+        border-radius: 0;
+      }
+      
+      .pdf-viewer-content iframe {
+        height: 400px;
+      }
     }
   </style>
 </head>
-<body class="container">
-  <header class="page-header">
-    <h1>🎨 Scratch 教材瀏覽器</h1>
-    <p class="subtitle">Scratch 程式設計學習資源與教學教材</p>
-    <div class="source-selector">
-      <strong>📚 教材來源：</strong>
-      <button onclick="filterSource('all')" class="level-btn active">全部</button>
-      <button onclick="filterSource('local')" class="level-btn">本地上傳</button>
-      <button onclick="filterSource('github')" class="level-btn">GitHub Release</button>
-    </div>
+<body>
+  <div class="container">
+    <header class="page-header">
+      <h1>📚 Scratch 教材瀏覽器</h1>
+      <p class="subtitle">5個預嵌教材 + 28個GitHub下載資源</p>
+      <a href="index.html" class="btn btn-secondary">🏠 返回首頁</a>
+    </header>
     
-    <!-- 狀態指示器 -->
-    <div id="connectionStatus" class="viewer-status status-warning" style="display: none;">
-      <strong>⚠️ 注意：</strong> GitHub PDF 可能需要手動下載
-    </div>
-  </header>
-  
-  <nav class="breadcrumb">
-    <a href="index.html">首頁</a> &gt; <span>Scratch 教材</span>
-  </nav>
-  
-  <main class="viewer-container">
-    <div class="viewer-content">
-      <aside class="sidebar">
-        <h3>📚 Scratch 教材選單</h3>
+    <nav class="breadcrumb">
+      <a href="index.html">首頁</a> / <span>Scratch 教材</span>
+    </nav>
+    
+    <main class="main-content">
+      <div class="filter-section">
+        <select id="category-filter" class="filter-select">
+          <option value="all">📚 所有分類 (33個)</option>
+          <option value="beginner">👶 初學者</option>
+          <option value="setup">⚙️ 環境設置</option>
+          <option value="basic">📘 基礎教學</option>
+          <option value="design">🎨 設計與美術</option>
+          <option value="multimedia">🎵 多媒體</option>
+          <option value="project">🚀 專案實作</option>
+          <option value="ai">🤖 AI應用</option>
+          <option value="creative">✨ 創意設計</option>
+          <option value="math">🧮 數學應用</option>
+          <option value="advanced">⚡ 進階技巧</option>
+          <option value="hardware">🔌 硬體整合</option>
+        </select>
+      </div>
+      
+      <div class="pdf-container">
+        <div class="pdf-list-container">
+          <h3>📖 教材列表 <span id="pdf-count">(33)</span></h3>
+          <div id="pdf-list" class="pdf-list"></div>
+        </div>
         
-        <div class="level-filter">
-          <h4>🔍 難度等級</h4>
-          <div class="level-buttons" id="levelButtons">
-            <!-- 動態生成 -->
+        <div>
+          <div class="stats-card">
+            <h4>📊 統計信息</h4>
+            <div class="stats-number" id="total-pdf-views">0</div>
+            <div class="stats-label">總瀏覽次數</div>
+            <div class="stats-number">5</div>
+            <div class="stats-label">預嵌教材</div>
+            <div class="stats-number">28</div>
+            <div class="stats-label">下載教材</div>
+          </div>
+          
+          <div class="stats-card">
+            <h4>💡 使用說明</h4>
+            <p style="text-align: left; font-size: 0.9rem; line-height: 1.6;">
+              <span style="color: #4a6fa5; font-weight: bold;">🔍 預嵌教材</span>：直接點擊即可在線閱讀<br>
+              <span style="color: #28a745; font-weight: bold;">⬇️ 下載教材</span>：點擊後從GitHub下載<br>
+              📚 共33個教學章節，持續更新中！
+            </p>
           </div>
         </div>
-        
-        <select id="pdfSelect" size="12" class="pdf-select"></select>
-        
-        <div class="nav-buttons">
-          <button onclick="prevPDF()" class="nav-btn">⬅️ 上一教材</button>
-          <button onclick="nextPDF()" class="nav-btn">➡️ 下一教材</button>
-          <button onclick="refreshList()" class="nav-btn">🔄 重新整理</button>
-          <button onclick="goBack()" class="nav-btn back-btn">🔙 返回主頁</button>
-        </div>
-        
-        <!-- 直接下載區域 -->
-        <div id="downloadPanel" class="github-info" style="display: none; margin-top: 20px;">
-          <h4>📥 下載選項</h4>
-          <div id="downloadButtons"></div>
-        </div>
-      </aside>
+      </div>
       
-      <section class="viewer-main">
-        <!-- PDF 預覽區域 -->
-        <div class="pdf-canvas-container">
-          <canvas id="pdfCanvas"></canvas>
-        </div>
-        
-        <!-- 狀態訊息 -->
-        <div class="viewer-status" id="viewerStatus">
-          <span class="loading"></span>請從左側選單選擇教材
-        </div>
-        
-        <!-- 錯誤訊息區域 -->
-        <div id="errorMessage" class="viewer-status status-error" style="display: none;">
-          <div id="errorContent"></div>
-        </div>
-        
-        <!-- 成功訊息區域 -->
-        <div id="successMessage" class="viewer-status status-success" style="display: none;">
-          <div id="successContent"></div>
-        </div>
-        
-        <!-- 頁面控制 -->
-        <div class="page-controls">
-          <button onclick="prevPage()" class="page-btn">📄 上一頁</button>
-          <span class="page-info" id="pageInfo">第 0 頁 / 共 0 頁</span>
-          <button onclick="nextPage()" class="page-btn">📄 下一頁</button>
-          <button onclick="downloadCurrentPDF()" class="download-btn">⬇️ 下載此 PDF</button>
-        </div>
-        
-        <!-- 縮放控制 -->
-        <div class="zoom-controls">
-          <button onclick="zoomOut()" class="page-btn">🔍 -</button>
-          <span class="page-info" id="zoomLevel">150%</span>
-          <button onclick="zoomIn()" class="page-btn">🔍 +</button>
-        </div>
-      </section>
+      <div id="pdf-viewer" class="pdf-viewer"></div>
+    </main>
+    
+    <div style="text-align: center; margin: 30px 0;">
+      <a href="index.html" class="btn btn-primary">🏠 返回首頁</a>
+      <a href="video-player.html?v=3.0" class="btn btn-secondary">🎥 觀看影片</a>
     </div>
-  </main>
+  </div>
   
+  <script src="js/pdf-manager.js"></script>
   <script>
-    // 配置常量
-    const CONFIG = {
-      manifestURL: './data_scr/manifest.json',
-      githubRepo: 'chday169/scratch-web-0218',
-      releaseTag: 'pdfs-scratch-new',
-      maxRetryAttempts: 2,
-      retryDelay: 1000,
-      fallbackToDownload: true
-    };
-    
-    // 全局變量
-    let pdfList = [];
-    let filteredList = [];
-    let currentIndex = -1;
-    let currentPDF = null;
-    let currentPage = 1;
-    let totalPages = 0;
-    let currentScale = 1.5;
-    let currentFilter = { level: 'all', source: 'all' };
-    let retryCount = 0;
-    
-    // 初始化
     document.addEventListener('DOMContentLoaded', function() {
-      console.log('Scratch 教材瀏覽器初始化...');
-      setupEventListeners();
-      loadPDFList();
-      checkConnection();
+      // 初始化 PDF 管理器
+      PDFManager.init();
+      
+      // 載入總瀏覽次數
+      loadTotalViews();
+      
+      // 記錄頁面訪問
+      recordPageView('scratch_viewer');
     });
     
-    // 設置事件監聽器
-    function setupEventListeners() {
-      document.getElementById('pdfSelect').addEventListener('change', function(e) {
-        const index = parseInt(e.target.value);
-        if (!isNaN(index) && index >= 0) {
-          showPDF(index);
-        }
-      });
+    function loadTotalViews() {
+      let total = 0;
+      const pdfs = JSON.parse(localStorage.getItem('scratch_pdfs') || '{}');
       
-      // 鍵盤快捷鍵
-      document.addEventListener('keydown', handleKeyDown);
-      
-      // 頁面可見性變化
-      document.addEventListener('visibilitychange', function() {
-        if (!document.hidden && currentPDF && currentPage > 0) {
-          renderPage(currentPage);
-        }
-      });
-    }
-    
-    // 鍵盤控制
-    function handleKeyDown(e) {
-      if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') {
-        return;
+      for (const id in pdfs) {
+        total += pdfs[id].views || 0;
       }
       
-      switch(e.key) {
-        case 'ArrowLeft':
-          if (e.ctrlKey) prevPDF();
-          else prevPage();
-          e.preventDefault();
-          break;
-        case 'ArrowRight':
-          if (e.ctrlKey) nextPDF();
-          else nextPage();
-          e.preventDefault();
-          break;
-        case '+':
-        case '=':
-          if (e.ctrlKey) {
-            zoomIn();
-            e.preventDefault();
-          }
-          break;
-        case '-':
-          if (e.ctrlKey) {
-            zoomOut();
-            e.preventDefault();
-          }
-          break;
-        case 'd':
-        case 'D':
-          if (e.ctrlKey) {
-            downloadCurrentPDF();
-            e.preventDefault();
-          }
-          break;
-      }
+      document.getElementById('total-pdf-views').textContent = total;
     }
     
-    // 檢查連接狀態
-    function checkConnection() {
-      const statusEl = document.getElementById('connectionStatus');
-      if (navigator.onLine) {
-        statusEl.style.display = 'none';
-      } else {
-        statusEl.innerHTML = '<strong>⚠️ 離線模式：</strong> 請檢查網路連接';
-        statusEl.style.display = 'block';
-      }
-    }
-    
-    // 載入 PDF 清單
-    async function loadPDFList() {
-      try {
-        showViewerStatus('載入教材清單中...', 'loading');
-        
-        const response = await fetchWithRetry(CONFIG.manifestURL);
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-        
-        const data = await response.json();
-        
-        // 檢查數據格式
-        if (!data || !data.pdfs || !Array.isArray(data.pdfs)) {
-          throw new Error('清單格式錯誤，缺少 pdfs 陣列');
-        }
-        
-        // 處理 PDF 列表
-        pdfList = data.pdfs.map((item, idx) => ({
-          ...item,
-          id: item.id || `pdf-${idx}`,
-          index: idx,
-          views: parseInt(localStorage.getItem(`pdf_views_${item.id}`) || '0'),
-          likes: parseInt(localStorage.getItem(`pdf_likes_${item.id}`) || '0')
-        }));
-        
-        // 載入分類
-        if (data.categories) {
-          window.pdfCategories = data.categories;
-        }
-        
-        // 初始化過濾按鈕
-        initLevelButtons();
-        
-        // 應用過濾器
-        applyFilters();
-        
-        if (pdfList.length > 0) {
-          showViewerStatus(`找到 ${pdfList.length} 個教材`, 'success');
-          showPDF(0);
-        } else {
-          showViewerStatus('❌ 沒有可用的教材', 'error');
-        }
-        
-      } catch (err) {
-        console.error('載入清單失敗:', err);
-        showViewerStatus(`❌ 無法載入教材清單: ${err.message}`, 'error');
-        showError(`請檢查 manifest.json 檔案：${err.message}`);
-      }
-    }
-    
-    // 重試機制
-    async function fetchWithRetry(url, options = {}, attempts = CONFIG.maxRetryAttempts) {
-      for (let i = 0; i < attempts; i++) {
-        try {
-          const response = await fetch(url, options);
-          if (response.ok) return response;
-          
-          if (i === attempts - 1) return response;
-          
-          await new Promise(resolve => setTimeout(resolve, CONFIG.retryDelay));
-        } catch (err) {
-          if (i === attempts - 1) throw err;
-          await new Promise(resolve => setTimeout(resolve, CONFIG.retryDelay));
-        }
-      }
-      throw new Error('所有重試嘗試失敗');
-    }
-    
-    // 初始化等級按鈕
-    function initLevelButtons() {
-      const container = document.getElementById('levelButtons');
-      container.innerHTML = '';
-      
-      // 添加"全部"按鈕
-      container.appendChild(createFilterButton('all', '全部'));
-      
-      // 添加分類按鈕
-      if (window.pdfCategories) {
-        Object.entries(window.pdfCategories).forEach(([key, label]) => {
-          container.appendChild(createFilterButton(key, label));
-        });
-      } else {
-        // 自動從現有數據提取分類
-        const levels = [...new Set(pdfList.map(item => item.level).filter(Boolean))];
-        levels.forEach(level => {
-          container.appendChild(createFilterButton(level, level));
-        });
-      }
-    }
-    
-    function createFilterButton(level, label) {
-      const btn = document.createElement('button');
-      btn.className = 'level-btn';
-      btn.dataset.level = level;
-      btn.textContent = label;
-      btn.onclick = () => {
-        document.querySelectorAll('.level-buttons .level-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentFilter.level = level;
-        applyFilters();
-      };
-      
-      if (level === 'all') {
-        btn.classList.add('active');
-      }
-      
-      return btn;
-    }
-    
-    // 來源過濾
-    function filterSource(source) {
-      document.querySelectorAll('.source-selector .level-btn').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      event.target.classList.add('active');
-      currentFilter.source = source;
-      applyFilters();
-    }
-    
-    // 應用過濾器
-    function applyFilters() {
-      filteredList = pdfList.filter(item => {
-        // 等級過濾
-        if (currentFilter.level !== 'all' && item.level !== currentFilter.level) {
-          return false;
-        }
-        
-        // 來源過濾
-        if (currentFilter.source !== 'all' && item.source !== currentFilter.source) {
-          return false;
-        }
-        
-        return true;
-      });
-      
-      updatePDFSelect();
-      updateDownloadPanel();
-      
-      if (filteredList.length > 0) {
-        let newIndex = 0;
-        
-        // 嘗試保持當前選擇
-        if (currentIndex >= 0 && currentIndex < pdfList.length) {
-          const currentItem = pdfList[currentIndex];
-          const filteredIndex = filteredList.findIndex(item => item.id === currentItem.id);
-          if (filteredIndex >= 0) {
-            newIndex = filteredIndex;
-          }
-        }
-        
-        showPDF(newIndex);
-      } else {
-        showViewerStatus('❌ 沒有符合條件的教材', 'error');
-        clearCanvas();
-      }
-    }
-    
-    // 更新選單
-    function updatePDFSelect() {
-      const select = document.getElementById('pdfSelect');
-      select.innerHTML = '';
-      
-      filteredList.forEach((item, index) => {
-        const option = document.createElement('option');
-        option.value = index;
-        option.textContent = `${index + 1}. ${item.title}`;
-        
-        // 添加來源標記
-        if (item.source === 'github') {
-          option.textContent += ' [GitHub]';
-        } else if (item.source === 'local') {
-          option.textContent += ' [本地]';
-        }
-        
-        select.appendChild(option);
-      });
-      
-      if (currentIndex >= 0 && currentIndex < filteredList.length) {
-        select.selectedIndex = currentIndex;
-      }
-    }
-    
-    // 更新下載面板
-    function updateDownloadPanel() {
-      const panel = document.getElementById('downloadPanel');
-      const buttons = document.getElementById('downloadButtons');
-      
-      if (filteredList.length === 0) {
-        panel.style.display = 'none';
-        return;
-      }
-      
-      buttons.innerHTML = '';
-      
-      // 為每個PDF創建下載按鈕
-      filteredList.forEach((item, index) => {
-        const btn = document.createElement('button');
-        btn.className = 'download-btn';
-        btn.textContent = `${index + 1}. ${item.title.substring(0, 20)}${item.title.length > 20 ? '...' : ''}`;
-        btn.onclick = () => {
-          downloadPDF(item);
-          showPDF(index);
-        };
-        btn.title = `下載: ${item.title}`;
-        buttons.appendChild(btn);
-        
-        if (index < filteredList.length - 1) {
-          buttons.appendChild(document.createElement('br'));
-        }
-      });
-      
-      panel.style.display = 'block';
-    }
-    
-    // 顯示PDF
-    function showPDF(index) {
-      if (index < 0 || index >= filteredList.length) return;
-      
-      currentIndex = index;
-      const item = filteredList[index];
-      
-      // 更新選單
-      document.getElementById('pdfSelect').selectedIndex = index;
-      
-      // 更新狀態
-      showViewerStatus(`載入: ${item.title}`, 'loading');
-      
-      // 記錄瀏覽
-      recordView(item.id);
-      
-      // 載入PDF
-      loadPDFDocument(item);
-    }
-    
-    // 載入PDF文檔
-    async function loadPDFDocument(item) {
-      try {
-        clearCanvas();
-        retryCount = 0;
-        
-        // 顯示詳細資訊
-        showSuccess(`📚 ${item.title}<br>📁 來源: ${item.source || '未知'}`);
-        
-        // 如果是GitHub來源，顯示下載提示
-        if (item.source === 'github') {
-          showViewerStatus('嘗試從 GitHub 載入...', 'loading');
-          
-          // 嘗試多種方式載入
-          await tryLoadPDF(item.url, item);
-          
-        } else {
-          // 本地檔案
-          const loadingTask = pdfjsLib.getDocument({
-            url: item.url,
-            withCredentials: false
-          });
-          
-          currentPDF = await loadingTask.promise;
-          totalPages = currentPDF.numPages;
-          currentPage = 1;
-          
-          await renderPage(currentPage);
-          showViewerStatus(`✅ 載入成功: ${item.title}`, 'success');
-        }
-        
-      } catch (err) {
-        console.error('PDF載入失敗:', err);
-        
-        // 顯示錯誤並提供下載選項
-        showError(`
-          ❌ 無法在瀏覽器中預覽此PDF<br>
-          📥 請點擊「下載此 PDF」按鈕獲取檔案<br>
-          ${err.message || ''}
-        `);
-        
-        showViewerStatus('⚠️ 需要手動下載', 'warning');
-      }
-    }
-    
-    // 嘗試多種方式載入PDF
-    async function tryLoadPDF(url, item) {
-      const strategies = [
-        // 策略1: 直接載入
-        () => pdfjsLib.getDocument({
-          url: url + '?t=' + Date.now(),
-          withCredentials: false
-        }).promise,
-        
-        // 策略2: 通過fetch獲取blob
-        async () => {
-          const response = await fetch(url, { cache: 'no-store' });
-          if (!response.ok) throw new Error(`HTTP ${response.status}`);
-          
-          const blob = await response.blob();
-          const blobUrl = URL.createObjectURL(blob);
-          
-          const pdf = await pdfjsLib.getDocument({
-            url: blobUrl,
-            withCredentials: false
-          }).promise;
-          
-          // 清理blob URL
-          setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
-          return pdf;
-        }
-      ];
-      
-      let lastError = null;
-      
-      for (let i = 0; i < strategies.length; i++) {
-        try {
-          currentPDF = await strategies[i]();
-          totalPages = currentPDF.numPages;
-          currentPage = 1;
-          
-          await renderPage(currentPage);
-          showViewerStatus(`✅ GitHub PDF 載入成功`, 'success');
-          return;
-          
-        } catch (err) {
-          lastError = err;
-          console.log(`策略 ${i + 1} 失敗:`, err);
-          
-          if (i < strategies.length - 1) {
-            showViewerStatus(`嘗試方式 ${i + 1} 失敗，嘗試下一種...`, 'loading');
-            await new Promise(resolve => setTimeout(resolve, 500));
-          }
-        }
-      }
-      
-      throw lastError || new Error('所有載入方式都失敗');
-    }
-    
-    // 渲染頁面
-    async function renderPage(pageNum) {
-      if (!currentPDF || pageNum < 1 || pageNum > totalPages) return;
-      
-      try {
-        const page = await currentPDF.getPage(pageNum);
-        const viewport = page.getViewport({ scale: currentScale });
-        const canvas = document.getElementById('pdfCanvas');
-        const context = canvas.getContext('2d');
-        
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
-        
-        await page.render({
-          canvasContext: context,
-          viewport: viewport
-        }).promise;
-        
-        document.getElementById('pageInfo').textContent = `第 ${pageNum} 頁 / 共 ${totalPages} 頁`;
-        document.getElementById('zoomLevel').textContent = `${Math.round(currentScale * 100)}%`;
-        
-      } catch (err) {
-        console.error('頁面渲染失敗:', err);
-        throw new Error('頁面渲染失敗');
-      }
-    }
-    
-    // 下載PDF
-    function downloadPDF(item) {
-      if (!item || !item.url) return;
-      
-      try {
-        const link = document.createElement('a');
-        link.href = item.url;
-        link.download = getFilenameFromUrl(item.url) || `${item.id}.pdf`;
-        link.target = '_blank';
-        
-        // 觸發下載
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        
-        showSuccess(`✅ 開始下載: ${item.title}`);
-        
-      } catch (err) {
-        console.error('下載失敗:', err);
-        showError(`❌ 下載失敗: ${err.message}`);
-      }
-    }
-    
-    function downloadCurrentPDF() {
-      if (currentIndex >= 0 && currentIndex < filteredList.length) {
-        downloadPDF(filteredList[currentIndex]);
-      }
-    }
-    
-    // 輔助函數
-    function getFilenameFromUrl(url) {
-      if (!url) return '';
-      const filename = url.split('/').pop();
-      return filename.split('?')[0];
-    }
-    
-    function recordView(pdfId) {
-      const key = `pdf_views_${pdfId}`;
+    function recordPageView(page) {
+      const key = `views_${page}`;
       let count = parseInt(localStorage.getItem(key) || '0');
       count++;
       localStorage.setItem(key, count.toString());
     }
-    
-    function clearCanvas() {
-      const canvas = document.getElementById('pdfCanvas');
-      const ctx = canvas.getContext('2d');
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      canvas.width = 0;
-      canvas.height = 0;
-    }
-    
-    // 狀態顯示函數
-    function showViewerStatus(message, type = 'info') {
-      const el = document.getElementById('viewerStatus');
-      let icon = '';
-      
-      switch(type) {
-        case 'error': icon = '❌ '; break;
-        case 'loading': icon = '<span class="loading"></span>'; break;
-        case 'success': icon = '✅ '; break;
-        case 'warning': icon = '⚠️ '; break;
-        default: icon = 'ℹ️ ';
-      }
-      
-      el.innerHTML = `${icon} ${message}`;
-      el.className = `viewer-status status-${type}`;
-      el.style.display = 'block';
-      
-      // 隱藏其他訊息
-      document.getElementById('errorMessage').style.display = 'none';
-      document.getElementById('successMessage').style.display = 'none';
-    }
-    
-    function showError(message) {
-      const el = document.getElementById('errorMessage');
-      const content = document.getElementById('errorContent');
-      content.innerHTML = message;
-      el.style.display = 'block';
-    }
-    
-    function showSuccess(message) {
-      const el = document.getElementById('successMessage');
-      const content = document.getElementById('successContent');
-      content.innerHTML = message;
-      el.style.display = 'block';
-    }
-    
-    // 導航函數
-    function prevPage() {
-      if (currentPDF && currentPage > 1) {
-        currentPage--;
-        renderPage(currentPage);
-      }
-    }
-    
-    function nextPage() {
-      if (currentPDF && currentPage < totalPages) {
-        currentPage++;
-        renderPage(currentPage);
-      }
-    }
-    
-    function prevPDF() {
-      if (currentIndex > 0) {
-        showPDF(currentIndex - 1);
-      }
-    }
-    
-    function nextPDF() {
-      if (currentIndex < filteredList.length - 1) {
-        showPDF(currentIndex + 1);
-      }
-    }
-    
-    function refreshList() {
-      loadPDFList();
-    }
-    
-    function goBack() {
-      window.location.href = 'index.html';
-    }
-    
-    // 縮放功能
-    function zoomIn() {
-      if (currentScale < 3.0) {
-        currentScale += 0.1;
-        if (currentPDF && currentPage) {
-          renderPage(currentPage);
-        }
-      }
-    }
-    
-    function zoomOut() {
-      if (currentScale > 0.5) {
-        currentScale -= 0.1;
-        if (currentPDF && currentPage) {
-          renderPage(currentPage);
-        }
-      }
-    }
-    
-    // 網路狀態監聽
-    window.addEventListener('online', checkConnection);
-    window.addEventListener('offline', checkConnection);
-    
   </script>
 </body>
 </html>
