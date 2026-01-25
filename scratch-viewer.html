@@ -6,7 +6,6 @@
   <title>📚 Scratch 教材瀏覽器</title>
   <link rel="stylesheet" href="assets/style.css">
   <style>
-    /* 專為 Scratch 教材瀏覽器添加的樣式 */
     .pdf-controls {
       display: flex;
       gap: 15px;
@@ -14,7 +13,6 @@
       flex-wrap: wrap;
       align-items: center;
     }
-    
     .filter-select {
       padding: 10px 15px;
       border: 1px solid #dee2e6;
@@ -23,7 +21,6 @@
       min-width: 200px;
       background: white;
     }
-    
     .stats-badge {
       display: inline-block;
       padding: 5px 10px;
@@ -33,7 +30,6 @@
       font-size: 0.9rem;
       margin-left: 10px;
     }
-    
     .pdf-list-container {
       background: white;
       border-radius: 12px;
@@ -41,14 +37,12 @@
       margin-top: 20px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
-    
     #pdf-list {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 20px;
       margin-top: 20px;
     }
-    
     .pdf-item {
       background: #f8f9fa;
       border-radius: 10px;
@@ -58,45 +52,35 @@
       transition: all 0.3s ease;
       position: relative;
     }
-    
     .pdf-item:hover {
       border-color: #4a6fa5;
       transform: translateY(-3px);
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
-    
     .pdf-item.embedded {
       border-left: 5px solid #4a6fa5;
     }
-    
     .pdf-item.download-only {
       border-left: 5px solid #28a745;
     }
-    
     .pdf-title {
       font-weight: 600;
       font-size: 1.1rem;
       color: #2c3e50;
       margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
-    
     .pdf-description {
       font-size: 0.9rem;
       color: #6c757d;
       margin-bottom: 12px;
       line-height: 1.5;
     }
-    
     .pdf-meta {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-top: 10px;
     }
-    
     .pdf-status {
       display: inline-block;
       padding: 4px 12px;
@@ -104,28 +88,23 @@
       font-size: 0.8rem;
       font-weight: 500;
     }
-    
     .pdf-status.embedded {
       background: #4a6fa5;
       color: white;
     }
-    
     .pdf-status.download {
       background: #28a745;
       color: white;
     }
-    
     .pdf-views {
       font-size: 0.85rem;
       color: #6c757d;
     }
-    
     .pdf-actions {
       display: flex;
       gap: 10px;
       margin-top: 15px;
     }
-    
     .pdf-action-btn {
       flex: 1;
       padding: 8px 12px;
@@ -135,25 +114,20 @@
       font-size: 0.9rem;
       transition: all 0.3s ease;
     }
-    
     .view-btn {
       background: #4a6fa5;
       color: white;
     }
-    
     .view-btn:hover {
       background: #3a5a8c;
     }
-    
     .download-btn {
       background: #28a745;
       color: white;
     }
-    
     .download-btn:hover {
       background: #218838;
     }
-    
     .pdf-viewer-overlay {
       display: none;
       position: fixed;
@@ -166,7 +140,6 @@
       align-items: center;
       justify-content: center;
     }
-    
     .pdf-viewer-container {
       background: white;
       border-radius: 12px;
@@ -177,7 +150,6 @@
       display: flex;
       flex-direction: column;
     }
-    
     .pdf-viewer-header {
       display: flex;
       justify-content: space-between;
@@ -186,13 +158,11 @@
       background: #f8f9fa;
       border-bottom: 1px solid #dee2e6;
     }
-    
     .pdf-viewer-title {
       font-size: 1.2rem;
       font-weight: 600;
       color: #2c3e50;
     }
-    
     .close-viewer {
       background: none;
       border: none;
@@ -201,29 +171,24 @@
       color: #6c757d;
       padding: 0 10px;
     }
-    
     .close-viewer:hover {
       color: #dc3545;
     }
-    
     .pdf-viewer-content {
       flex: 1;
       overflow: hidden;
     }
-    
     .pdf-viewer-content iframe {
       width: 100%;
       height: 100%;
       border: none;
     }
-    
     .stats-cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px;
       margin-top: 30px;
     }
-    
     .stat-card {
       background: white;
       border-radius: 10px;
@@ -231,25 +196,21 @@
       text-align: center;
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
-    
     .stat-number {
       font-size: 2.5rem;
       font-weight: bold;
       color: #4a6fa5;
       margin: 10px 0;
     }
-    
     .stat-label {
       color: #6c757d;
       font-size: 0.9rem;
     }
-    
     .loading {
       text-align: center;
       padding: 40px;
       color: #6c757d;
     }
-    
     .loading-spinner {
       display: inline-block;
       width: 40px;
@@ -260,26 +221,21 @@
       animation: spin 1s linear infinite;
       margin-bottom: 15px;
     }
-    
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-    
     @media (max-width: 768px) {
       #pdf-list {
         grid-template-columns: 1fr;
       }
-      
       .pdf-controls {
         flex-direction: column;
         align-items: stretch;
       }
-      
       .filter-select {
         width: 100%;
       }
-      
       .pdf-viewer-container {
         width: 95%;
         height: 95%;
@@ -300,7 +256,6 @@
     </nav>
     
     <main class="main-content">
-      <!-- 控制區域 -->
       <div class="pdf-controls">
         <select id="category-filter" class="filter-select">
           <option value="all">📚 所有教材 (33)</option>
@@ -325,11 +280,9 @@
         </div>
       </div>
       
-      <!-- PDF 列表 -->
       <div class="pdf-list-container">
         <h3>📖 Scratch 教材列表 <span id="pdf-count" class="stats-badge">33</span></h3>
         <div id="pdf-list" class="pdf-list">
-          <!-- PDF 項目將在這裡動態生成 -->
           <div class="loading">
             <div class="loading-spinner"></div>
             <p>正在載入教材列表...</p>
@@ -337,7 +290,6 @@
         </div>
       </div>
       
-      <!-- 統計資訊 -->
       <div class="stats-cards">
         <div class="stat-card">
           <div>🔍 預嵌教材</div>
@@ -363,7 +315,6 @@
     </div>
   </div>
   
-  <!-- PDF 查看器彈出層 -->
   <div id="pdf-viewer-overlay" class="pdf-viewer-overlay">
     <div class="pdf-viewer-container">
       <div class="pdf-viewer-header">
@@ -375,484 +326,217 @@
       </div>
     </div>
   </div>
-  
-  <script>
-    // 全局變數
-    let pdfManifest = [];
-    let pdfStats = {};
-    
-    // 頁面載入完成後初始化
-    document.addEventListener('DOMContentLoaded', function() {
-      // 載入 PDF 清單
-      loadPDFManifest();
-      
-      // 設定事件監聽器
-      setupEventListeners();
-      
-      // 載入統計數據
-      loadStats();
-      
-      // 記錄頁面訪問
-      recordPageView('scratch_viewer');
-    });
-    
-    // 載入 PDF manifest
-    async function loadPDFManifest() {
-      try {
-        console.log('正在載入 manifest.json...');
-        
-        // 嘗試從不同路徑載入
-        const manifestPaths = [
-          './data/manifest.json',
-          './data_scr/manifest.json',
-          'https://chday169.github.io/scratch-web-0218/data/manifest.json'
-        ];
-        
-        let manifest = null;
-        let lastError = null;
-        
-        for (const path of manifestPaths) {
-          try {
-            const response = await fetch(path);
-            if (response.ok) {
-              manifest = await response.json();
-              console.log(`成功從 ${path} 載入 manifest`);
-              break;
-            }
-          } catch (error) {
-            lastError = error;
-            console.warn(`無法從 ${path} 載入:`, error);
-          }
-        }
-        
-        if (!manifest) {
-          // 如果所有路徑都失敗，使用預設數據
-          console.log('使用預設 manifest 數據');
-          manifest = await getDefaultManifest();
-        }
-        
-        // 儲存 manifest
-        pdfManifest = manifest.pdfs || manifest;
-        
-        // 載入統計數據
-        loadSavedStats();
-        
-        // 渲染 PDF 列表
-        renderPDFList();
-        
-        // 更新計數
-        updateCounts();
-        
-      } catch (error) {
-        console.error('載入 manifest 失敗:', error);
-        showErrorMessage('無法載入教材列表，請檢查網路連線或稍後再試。');
-      }
+
+<script>
+// ========== 【核心修复】立即定义全局函数 ==========
+// 确保HTML中的onclick能立刻找到这些函数
+window.viewPDF = function(pdfId) {
+  const pdf = pdfManifest.find(p => p.id === pdfId);
+  if (!pdf || !pdf.githubRelease) return;
+  window.open(pdf.githubRelease, '_blank'); // 直接打开GitHub链接
+  if (typeof incrementViewCount === 'function') incrementViewCount(pdfId);
+};
+
+window.downloadPDF = function(pdfId) {
+  const pdf = pdfManifest.find(p => p.id === pdfId);
+  if (!pdf || !pdf.githubRelease) return;
+  window.open(pdf.githubRelease, '_blank'); // 直接打开GitHub链接
+  if (typeof incrementViewCount === 'function') incrementViewCount(pdfId);
+};
+
+// ========== 全局變數 ==========
+let pdfManifest = [];
+let pdfStats = {};
+
+// ========== 頁面初始化 ==========
+document.addEventListener('DOMContentLoaded', function() {
+  loadPDFManifest();
+  setupEventListeners();
+  loadStats();
+  recordPageView('scratch_viewer');
+});
+
+// ========== 載入教材清單 ==========
+async function loadPDFManifest() {
+  try {
+    console.log('正在載入教材清單...');
+    // 直接使用內置的完整清單，避免任何網絡或路徑問題
+    const manifest = { pdfs: getFullManifestData() };
+    pdfManifest = manifest.pdfs;
+    loadSavedStats();
+    renderPDFList();
+    updateCounts();
+  } catch (error) {
+    console.error('載入失敗:', error);
+    showErrorMessage('無法載入教材列表。');
+  }
+}
+
+// ========== 【完整數據】33項教材清單 ==========
+function getFullManifestData() {
+  return [
+    // 預嵌教材 (5項)
+    { id: "chapter0", title: "Scratch從零開始的創意程式設計之旅", category: "beginner", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter00.pdf", description: "Scratch創意程式設計入門篇導讀", embedded: true },
+    { id: "chapter1", title: "Scratch3程式語言介紹", category: "beginner", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter01.pdf", description: "Scratch3程式語言基礎介紹", embedded: true },
+    { id: "chapter2", title: "Scratc及urboWarp下載、安裝", category: "setup", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter02.pdf", description: "Scratch和TurboWarp下載安裝教學", embedded: true },
+    { id: "chapter7", title: "圖像組合", category: "design", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter07.pdf", description: "圖像組合與圖層管理技巧", embedded: true },
+    { id: "chapter16", title: "Scratch繪製圓形與橢圓", category: "math", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter16.pdf", description: "使用Scratch繪製幾何圖形", embedded: true },
+
+    // 下載教材 (28項)
+    { id: "chapter3", title: "Scratch 主要積木構件介紹", category: "basic", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter03.pdf", description: "Scratch主要程式積木介紹", embedded: false },
+    { id: "chapter4", title: "建立 Scratch（或 TurboWarp）專案", category: "basic", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter04.pdf", description: "建立和管理Scratch專案", embedded: false },
+    { id: "chapter5", title: "造型及背景修圖工具", category: "design", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter05.pdf", description: "角色造型和背景編輯工具", embedded: false },
+    { id: "chapter6", title: "顏色及顏色填充", category: "design", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter06.pdf", description: "Scratch顏色系統與填充功能", embedded: false },
+    { id: "chapter8", title: "舞台選取及角色選擇", category: "basic", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter08.pdf", description: "舞台佈景與角色管理", embedded: false },
+    { id: "chapter9", title: "Scratch創作旋律和舞蹈聯動", category: "multimedia", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter09.pdf", description: "音樂創作與動畫同步", embedded: false },
+    { id: "chapter10", title: "Scratch跑馬模擬", category: "multimedia", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter10.pdf", description: "跑馬燈與動態文字效果", embedded: false },
+    { id: "chapter11", title: "鵝的世界", category: "project", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter11.pdf", description: "角色互動與故事場景設計", embedded: false },
+    { id: "chapter12", title: "Scratch 製作如何使用AI Copilot」簡報", category: "ai", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter12.pdf", description: "AI輔助編程工具應用", embedded: false },
+    { id: "chapter13", title: "詩詞賞析_古典意境與Scratch創作", category: "creative", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter13.pdf", description: "結合文學與程式設計", embedded: false },
+    { id: "chapter14", title: "電子鐘設計", category: "project", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter14.pdf", description: "實用電子時鐘程式設計", embedded: false },
+    { id: "chapter15", title: "Scratch繪圖與繪圖功能", category: "design", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter15.pdf", description: "Scratch繪圖工具教學", embedded: false },
+    { id: "chapter17", title: "Scratch自訂數學函數與空間運算模組", category: "math", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter17.pdf", description: "自訂數學函數應用", embedded: false },
+    { id: "chapter18", title: "三維特徵值與特徵向量模組", category: "math", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter18.pdf", description: "線性代數在Scratch中的應用", embedded: false },
+    { id: "chapter19", title: "主成分分析（PCA）與Scratch編程模組", category: "math", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter19.pdf", description: "數據分析技術實現", embedded: false },
+    { id: "chapter20", title: "精靈移動作幾何運算模組", category: "math", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter20.pdf", description: "角色運動與幾何運算", embedded: false },
+    { id: "chapter21", title: "Scratch笑臉繪製及矩陣轉換模組", category: "math", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter21.pdf", description: "圖形繪製與矩陣變換", embedded: false },
+    { id: "chapter22", title: "Scratch文字處理模組", category: "advanced", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter22.pdf", description: "文字處理與顯示技巧", embedded: false },
+    { id: "chapter23", title: "Scratch × Micro:bit 控制模組", category: "hardware", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter23.pdf", description: "Scratch與Micro:bit硬體整合", embedded: false },
+    { id: "chapter24", title: "圓周率、積分及微分簡介", category: "math", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter24.pdf", description: "微積分概念教學應用", embedded: false },
+    { id: "chapter25", title: "Scratch二維函數圖形繪製模組", category: "math", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter25.pdf", description: "數學函數圖形繪製", embedded: false },
+    { id: "chapter26", title: "三維函數圖繪製程式設計模組化整合版", category: "math", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter26.pdf", description: "三維圖形繪製程式設計", embedded: false },
+    { id: "chapter27", title: "從Scratch到Python_JavaScript ×_Extension設計整合版", category: "advanced", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter27.pdf", description: "從Scratch到其他語言過渡", embedded: false },
+    { id: "chapter28", title: "多功能科學計算器習作模組總整合", category: "project", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter28.pdf", description: "科學計算器完整開發", embedded: false },
+    { id: "chapter29", title: "開啟Scratch「幾何建構思維」的關鍵工具", category: "math", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter29.pdf", description: "幾何思維培養方法", embedded: false },
+    { id: "chapter30", title: "face-sensing(ai_python-java)", category: "ai", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter30.pdf", description: "人臉辨識技術應用", embedded: false },
+    { id: "chapter31", title: "相片處理(ai-python-turbowarp)", category: "ai", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter31.pdf", description: "圖像處理AI應用", embedded: false },
+    { id: "chapter32", title: "位元圖(ai-python-turbowarp)", category: "ai", githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter32.pdf", description: "位元圖處理與AI整合", embedded: false }
+  ];
+}
+
+// ========== 所有輔助函數 (完整) ==========
+function loadStats() {
+  const savedStats = localStorage.getItem('scratch_pdf_stats');
+  if (savedStats) pdfStats = JSON.parse(savedStats);
+}
+
+function loadSavedStats() {
+  pdfManifest.forEach(pdf => {
+    if (pdfStats[pdf.id]) {
+      pdf.views = pdfStats[pdf.id].views || 0;
+    } else {
+      pdf.views = 0;
     }
-    
-    // 取得預設 manifest（當無法載入檔案時使用）
-    async function getDefaultManifest() {
-      // 這裡使用我們創建的混合模式 manifest 結構
-      return {
-        pdfs: [
-          // 預嵌的 5 個 PDF
-          {
-            id: "chapter0",
-            title: "Scratch從零開始的創意程式設計之旅",
-            type: "pdf",
-            category: "beginner",
-            url: "./data/pdfs/chapter00.pdf",
-            githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter00.pdf",
-            description: "Scratch創意程式設計入門篇導讀",
-            views: 0,
-            likes: 0,
-            embedded: true
-          },
-          {
-            id: "chapter1",
-            title: "Scratch3程式語言介紹",
-            type: "pdf",
-            category: "beginner",
-            url: "./data/pdfs/chapter01.pdf",
-            githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter01.pdf",
-            description: "Scratch3程式語言基礎介紹",
-            views: 0,
-            likes: 0,
-            embedded: true
-          },
-          {
-            id: "chapter2",
-            title: "Scratc及urboWarp下載、安裝",
-            type: "pdf",
-            category: "setup",
-            url: "./data/pdfs/chapter02.pdf",
-            githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter02.pdf",
-            description: "Scratch和TurboWarp下載安裝教學",
-            views: 0,
-            likes: 0,
-            embedded: true
-          },
-          {
-            id: "chapter7",
-            title: "圖像組合",
-            type: "pdf",
-            category: "design",
-            url: "./data/pdfs/chapter07.pdf",
-            githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter07.pdf",
-            description: "圖像組合與圖層管理技巧",
-            views: 0,
-            likes: 0,
-            embedded: true
-          },
-          {
-            id: "chapter16",
-            title: "Scratch繪製圓形與橢圓",
-            type: "pdf",
-            category: "math",
-            url: "./data/pdfs/chapter16.pdf",
-            githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter16.pdf",
-            description: "使用Scratch繪製幾何圖形",
-            views: 0,
-            likes: 0,
-            embedded: true
-          },
-          // 以下是 28 個需要下載的 PDF（簡化顯示）
-          {
-            id: "chapter3",
-            title: "Scratch 主要積木構件介紹",
-            type: "pdf",
-            category: "basic",
-            githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter03.pdf",
-            description: "Scratch主要程式積木介紹",
-            views: 0,
-            likes: 0,
-            embedded: false
-          },
-          {
-            id: "chapter4",
-            title: "建立 Scratch（或 TurboWarp）專案",
-            type: "pdf",
-            category: "basic",
-            githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter04.pdf",
-            description: "建立和管理Scratch專案",
-            views: 0,
-            likes: 0,
-            embedded: false
-          },
-          {
-            id: "chapter5",
-            title: "造型及背景修圖工具",
-            type: "pdf",
-            category: "design",
-            githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter05.pdf",
-            description: "角色造型和背景編輯工具",
-            views: 0,
-            likes: 0,
-            embedded: false
-          },
-          {
-            id: "chapter6",
-            title: "顏色及顏色填充",
-            type: "pdf",
-            category: "design",
-            githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter06.pdf",
-            description: "Scratch顏色系統與填充功能",
-            views: 0,
-            likes: 0,
-            embedded: false
-          },
-          {
-            id: "chapter8",
-            title: "舞台選取及角色選擇",
-            type: "pdf",
-            category: "basic",
-            githubRelease: "https://github.com/chday169/scratch-web-0218/releases/download/pdfs-scratch-new/chapter08.pdf",
-            description: "舞台佈景與角色管理",
-            views: 0,
-            likes: 0,
-            embedded: false
-          }
-          // 注意：為了簡化，這裡只顯示10個項目，實際應該有33個
-        ]
-      };
-    }
-    
-    // 渲染 PDF 列表
-    function renderPDFList(filterCategory = 'all', filterType = 'all') {
-      const pdfListElement = document.getElementById('pdf-list');
-      
-      if (!pdfListElement) return;
-      
-      // 清空列表
-      pdfListElement.innerHTML = '';
-      
-      // 過濾 PDF
-      let filteredPDFs = pdfManifest;
-      
-      if (filterCategory !== 'all') {
-        filteredPDFs = filteredPDFs.filter(pdf => pdf.category === filterCategory);
-      }
-      
-      if (filterType === 'embedded') {
-        filteredPDFs = filteredPDFs.filter(pdf => pdf.embedded === true);
-      } else if (filterType === 'download') {
-        filteredPDFs = filteredPDFs.filter(pdf => pdf.embedded === false);
-      }
-      
-      // 如果沒有 PDF
-      if (filteredPDFs.length === 0) {
-        pdfListElement.innerHTML = `
-          <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #6c757d;">
-            <div style="font-size: 3rem; margin-bottom: 20px;">📚</div>
-            <h3>沒有找到教材</h3>
-            <p>請嘗試不同的分類篩選條件</p>
-          </div>
-        `;
-        return;
-      }
-      
-      // 建立每個 PDF 項目
-      filteredPDFs.forEach(pdf => {
-        const pdfElement = createPDFElement(pdf);
-        pdfListElement.appendChild(pdfElement);
-      });
-    }
-    
-    // 建立 PDF 元素
-    function createPDFElement(pdf) {
-      const div = document.createElement('div');
-      div.className = `pdf-item ${pdf.embedded ? 'embedded' : 'download-only'}`;
-      div.dataset.id = pdf.id;
-      div.dataset.category = pdf.category;
-      
-      // 載入統計數據
-      const stats = pdfStats[pdf.id] || { views: 0, likes: 0 };
-      
-      // 建立內容
-      div.innerHTML = `
-        <div class="pdf-title">
-          ${pdf.title}
-        </div>
-        <div class="pdf-description">
-          ${pdf.description || '暫無描述'}
-        </div>
-        <div class="pdf-meta">
-          <span class="pdf-status ${pdf.embedded ? 'embedded' : 'download'}">
-            ${pdf.embedded ? '🔍 預嵌' : '⬇️ 下載'}
-          </span>
-          <span class="pdf-views">👁️ ${stats.views} 次瀏覽</span>
-        </div>
-        <div class="pdf-actions">
-          ${pdf.embedded ? `
-            <button class="pdf-action-btn view-btn" onclick="viewPDF('${pdf.id}')">
-              在線閱讀
-            </button>
-          ` : ''}
-          ${pdf.githubRelease ? `
-            <button class="pdf-action-btn download-btn" onclick="downloadPDF('${pdf.id}')">
-              下載 PDF
-            </button>
-          ` : ''}
-        </div>
-      `;
-      
-      return div;
-    }
-    
-    // 查看 PDF（預嵌）
-    function viewPDF(pdfId) {
-      const pdf = pdfManifest.find(p => p.id === pdfId);
-      if (!pdf || !pdf.embedded) return;
-      
-      // 增加瀏覽計數
-      incrementViewCount(pdfId);
-      
-      // 顯示 PDF 查看器
-      const viewerOverlay = document.getElementById('pdf-viewer-overlay');
-      const viewerTitle = document.getElementById('pdf-viewer-title');
-      const viewerFrame = document.getElementById('pdf-viewer-frame');
-      
-      viewerTitle.textContent = pdf.title;
-      
-      // 設定 PDF 來源
-      // 先嘗試本地路徑，如果失敗則使用 GitHub Release 連結
-      const pdfUrl = pdf.url || pdf.githubRelease;
-      viewerFrame.src = pdfUrl;
-      
-      // 顯示查看器
-      viewerOverlay.style.display = 'flex';
-      
-      // 阻止背景滾動
-      document.body.style.overflow = 'hidden';
-    }
-    
-    // 下載 PDF
-    function downloadPDF(pdfId) {
-      const pdf = pdfManifest.find(p => p.id === pdfId);
-      if (!pdf || !pdf.githubRelease) return;
-      
-      // 增加瀏覽計數
-      incrementViewCount(pdfId);
-      
-      // 在新分頁中開啟下載連結
-      window.open(pdf.githubRelease, '_blank');
-    }
-    
-    // 增加瀏覽計數
-    function incrementViewCount(pdfId) {
-      if (!pdfStats[pdfId]) {
-        pdfStats[pdfId] = { views: 0, likes: 0 };
-      }
-      
-      pdfStats[pdfId].views++;
-      saveStats();
-      updateCounts();
-      
-      // 更新 UI
-      const pdfElement = document.querySelector(`.pdf-item[data-id="${pdfId}"] .pdf-views`);
-      if (pdfElement) {
-        pdfElement.textContent = `👁️ ${pdfStats[pdfId].views} 次瀏覽`;
-      }
-    }
-    
-    // 更新計數顯示
-    function updateCounts() {
-      // 更新總數
-      document.getElementById('pdf-count').textContent = pdfManifest.length;
-      
-      // 計算預嵌和下載數量
-      const embeddedCount = pdfManifest.filter(pdf => pdf.embedded).length;
-      const downloadCount = pdfManifest.length - embeddedCount;
-      
-      document.getElementById('embedded-count').textContent = embeddedCount;
-      document.getElementById('download-count').textContent = downloadCount;
-      
-      // 計算總瀏覽次數
-      const totalViews = Object.values(pdfStats).reduce((sum, stat) => sum + (stat.views || 0), 0);
-      document.getElementById('total-views').textContent = totalViews;
-    }
-    
-    // 設定事件監聽器
-    function setupEventListeners() {
-      // 分類篩選
-      const categoryFilter = document.getElementById('category-filter');
-      if (categoryFilter) {
-        categoryFilter.addEventListener('change', function() {
-          renderPDFList(this.value);
-        });
-      }
-      
-      // 顯示全部
-      const showAllBtn = document.getElementById('show-all');
-      if (showAllBtn) {
-        showAllBtn.addEventListener('click', function() {
-          renderPDFList('all');
-          categoryFilter.value = 'all';
-        });
-      }
-      
-      // 顯示預嵌
-      const showEmbeddedBtn = document.getElementById('show-embedded');
-      if (showEmbeddedBtn) {
-        showEmbeddedBtn.addEventListener('click', function() {
-          renderPDFList('all', 'embedded');
-          categoryFilter.value = 'all';
-        });
-      }
-      
-      // 顯示下載
-      const showDownloadBtn = document.getElementById('show-download');
-      if (showDownloadBtn) {
-        showDownloadBtn.addEventListener('click', function() {
-          renderPDFList('all', 'download');
-          categoryFilter.value = 'all';
-        });
-      }
-      
-      // 關閉 PDF 查看器
-      const closeViewerBtn = document.getElementById('close-viewer');
-      if (closeViewerBtn) {
-        closeViewerBtn.addEventListener('click', function() {
-          const viewerOverlay = document.getElementById('pdf-viewer-overlay');
-          const viewerFrame = document.getElementById('pdf-viewer-frame');
-          
-          viewerOverlay.style.display = 'none';
-          viewerFrame.src = '';
-          
-          // 恢復背景滾動
-          document.body.style.overflow = 'auto';
-        });
-      }
-      
-      // 點擊背景關閉查看器
-      const viewerOverlay = document.getElementById('pdf-viewer-overlay');
-      if (viewerOverlay) {
-        viewerOverlay.addEventListener('click', function(e) {
-          if (e.target === this) {
-            const viewerFrame = document.getElementById('pdf-viewer-frame');
-            
-            this.style.display = 'none';
-            viewerFrame.src = '';
-            
-            // 恢復背景滾動
-            document.body.style.overflow = 'auto';
-          }
-        });
-      }
-    }
-    
-    // 載入統計數據
-    function loadStats() {
-      // 嘗試從 localStorage 載入
-      const savedStats = localStorage.getItem('scratch_pdf_stats');
-      if (savedStats) {
-        pdfStats = JSON.parse(savedStats);
-      }
-    }
-    
-    // 載入保存的統計數據到 manifest
-    function loadSavedStats() {
-      pdfManifest.forEach(pdf => {
-        if (pdfStats[pdf.id]) {
-          pdf.views = pdfStats[pdf.id].views;
-          pdf.likes = pdfStats[pdf.id].likes;
-        }
-      });
-    }
-    
-    // 保存統計數據
-    function saveStats() {
-      localStorage.setItem('scratch_pdf_stats', JSON.stringify(pdfStats));
-    }
-    
-    // 記錄頁面訪問
-    function recordPageView(page) {
-      const key = `views_${page}`;
-      let count = parseInt(localStorage.getItem(key) || '0');
-      count++;
-      localStorage.setItem(key, count.toString());
-    }
-    
-    // 顯示錯誤訊息
-    function showErrorMessage(message) {
-      const pdfListElement = document.getElementById('pdf-list');
-      if (pdfListElement) {
-        pdfListElement.innerHTML = `
-          <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #dc3545;">
-            <div style="font-size: 3rem; margin-bottom: 20px;">⚠️</div>
-            <h3>載入失敗</h3>
-            <p>${message}</p>
-            <button onclick="loadPDFManifest()" class="btn btn-primary" style="margin-top: 20px;">
-              重試載入
-            </button>
-          </div>
-        `;
-      }
-    }
-    
-    // 提供全局函數供按鈕使用
-    window.viewPDF = viewPDF;
-    window.downloadPDF = downloadPDF;
-    window.loadPDFManifest = loadPDFManifest;
-  </script>
+  });
+}
+
+function renderPDFList(filterCategory = 'all', filterType = 'all') {
+  const pdfListElement = document.getElementById('pdf-list');
+  if (!pdfListElement) return;
+  pdfListElement.innerHTML = '';
+
+  let filteredPDFs = pdfManifest;
+  if (filterCategory !== 'all') filteredPDFs = filteredPDFs.filter(p => p.category === filterCategory);
+  if (filterType === 'embedded') filteredPDFs = filteredPDFs.filter(p => p.embedded);
+  if (filterType === 'download') filteredPDFs = filteredPDFs.filter(p => !p.embedded);
+
+  if (filteredPDFs.length === 0) {
+    pdfListElement.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:#6c757d"><h3>沒有找到教材</h3></div>';
+    return;
+  }
+
+  filteredPDFs.forEach(pdf => {
+    const pdfElement = createPDFElement(pdf);
+    pdfListElement.appendChild(pdfElement);
+  });
+}
+
+function createPDFElement(pdf) {
+  const div = document.createElement('div');
+  div.className = `pdf-item ${pdf.embedded ? 'embedded' : 'download-only'}`;
+  div.dataset.id = pdf.id;
+  div.innerHTML = `
+    <div class="pdf-title">${pdf.title}</div>
+    <div class="pdf-description">${pdf.description}</div>
+    <div class="pdf-meta">
+      <span class="pdf-status ${pdf.embedded ? 'embedded' : 'download'}">
+        ${pdf.embedded ? '🔍 預嵌' : '⬇️ 下載'}
+      </span>
+      <span class="pdf-views">👁️ ${pdf.views || 0} 次瀏覽</span>
+    </div>
+    <div class="pdf-actions">
+      ${pdf.embedded ? `<button class="pdf-action-btn view-btn" onclick="viewPDF('${pdf.id}')">在線閱讀</button>` : ''}
+      <button class="pdf-action-btn download-btn" onclick="downloadPDF('${pdf.id}')">下載 PDF</button>
+    </div>
+  `;
+  return div;
+}
+
+function incrementViewCount(pdfId) {
+  if (!pdfStats[pdfId]) pdfStats[pdfId] = { views: 0 };
+  pdfStats[pdfId].views++;
+  localStorage.setItem('scratch_pdf_stats', JSON.stringify(pdfStats));
+  const pdfElement = document.querySelector(`.pdf-item[data-id="${pdfId}"] .pdf-views`);
+  if (pdfElement) pdfElement.textContent = `👁️ ${pdfStats[pdfId].views} 次瀏覽`;
+  updateCounts();
+}
+
+function updateCounts() {
+  const total = pdfManifest.length;
+  const embeddedCount = pdfManifest.filter(p => p.embedded).length;
+  const downloadCount = total - embeddedCount;
+  const totalViews = Object.values(pdfStats).reduce((sum, stat) => sum + (stat.views || 0), 0);
+
+  const countEl = document.getElementById('pdf-count');
+  const embeddedEl = document.getElementById('embedded-count');
+  const downloadEl = document.getElementById('download-count');
+  const viewsEl = document.getElementById('total-views');
+
+  if (countEl) countEl.textContent = total;
+  if (embeddedEl) embeddedEl.textContent = embeddedCount;
+  if (downloadEl) downloadEl.textContent = downloadCount;
+  if (viewsEl) viewsEl.textContent = totalViews;
+}
+
+function setupEventListeners() {
+  const categoryFilter = document.getElementById('category-filter');
+  const showAllBtn = document.getElementById('show-all');
+  const showEmbeddedBtn = document.getElementById('show-embedded');
+  const showDownloadBtn = document.getElementById('show-download');
+  const closeViewerBtn = document.getElementById('close-viewer');
+  const viewerOverlay = document.getElementById('pdf-viewer-overlay');
+
+  if (categoryFilter) categoryFilter.addEventListener('change', (e) => renderPDFList(e.target.value));
+  if (showAllBtn) showAllBtn.addEventListener('click', () => { renderPDFList('all'); if(categoryFilter) categoryFilter.value = 'all'; });
+  if (showEmbeddedBtn) showEmbeddedBtn.addEventListener('click', () => { renderPDFList('all', 'embedded'); if(categoryFilter) categoryFilter.value = 'all'; });
+  if (showDownloadBtn) showDownloadBtn.addEventListener('click', () => { renderPDFList('all', 'download'); if(categoryFilter) categoryFilter.value = 'all'; });
+
+  if (closeViewerBtn) closeViewerBtn.addEventListener('click', hidePDFViewer);
+  if (viewerOverlay) viewerOverlay.addEventListener('click', (e) => { if (e.target === viewerOverlay) hidePDFViewer(); });
+}
+
+function hidePDFViewer() {
+  const viewer = document.getElementById('pdf-viewer-overlay');
+  const frame = document.getElementById('pdf-viewer-frame');
+  if (viewer) viewer.style.display = 'none';
+  if (frame) frame.src = '';
+  document.body.style.overflow = 'auto';
+}
+
+function saveStats() {
+  localStorage.setItem('scratch_pdf_stats', JSON.stringify(pdfStats));
+}
+
+function recordPageView(page) {
+  const key = `views_${page}`;
+  let count = parseInt(localStorage.getItem(key) || '0');
+  localStorage.setItem(key, (count + 1).toString());
+}
+
+function showErrorMessage(message) {
+  const el = document.getElementById('pdf-list');
+  if (el) el.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px;color:#dc3545"><h3>載入失敗</h3><p>${message}</p></div>`;
+}
+</script>
 </body>
 </html>
